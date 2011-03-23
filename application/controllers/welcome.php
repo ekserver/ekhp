@@ -17,9 +17,19 @@ class Welcome extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see http://codeigniter.com/user_guide/general/urls.html
 	 */
+     
+    public function __construct()
+    {
+        parent::__construct();
+        $this->template['title'] = 'Willkommen auf EK!';
+
+        $this->template['controller'] = 'welcome';
+        $this->template['layout'] = 'default';
+    }
+     
 	public function index()
 	{
-		$this->load->view('welcome_message');
+		$this->load->view('template', $this->template);
 	}
 }
 
