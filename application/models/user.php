@@ -18,7 +18,7 @@ class User extends CI_Model
     {
         parent::__construct();
     }
-    
+
     /*
     | Registriert Nutzer in Authserver Database
     | Benötigt wird dennoch ein extra Table für User genutzt von Codeigniter
@@ -29,7 +29,7 @@ class User extends CI_Model
     */
     function register($username, $password, $email/*, $firstname, $lastname*/)
     {
-        
+
     }
     /*
     | Loggt Benutzer mit den Logindaten der Authserver Database ein.
@@ -41,19 +41,19 @@ class User extends CI_Model
     | 1:$name_mail, 2:$password
     */
     function login($name_mail, $password)
-    {        
+    {
         if($this->valid_email($name_mail)) // Input was email
         {
             $email              = $name_mail;
-            
+
             $this->db_auth->select('username');
             $this->db_auth->from('account');
             $this->db_auth->where('email', $email);
-            
+
             $get_user_by_mail   = $this->db_auth->get();
             $row                = $get_user_by_mail->row();
             $username           = $row->username;
-            
+
             $get_user       = $this->db_auth->get_where('account', array(
                 'username'      => $username,
                 'sha_pass_hash' => $this->sha_pass($username, $password)
@@ -62,18 +62,18 @@ class User extends CI_Model
         }
         else // Input was username
         {
-            $username       = $name_mail; 
+            $username       = $name_mail;
             $get_user       = $this->db_auth->get_where('account', array(
                 'username'      => $username,
                 'sha_pass_hash' => $this->sha_pass($username, $password)
-                )   
+                )
             );
         }
-        
+
         if($get_user->num_rows() > 0)
         {
             $row = $get_user->row();
-            
+
             $user_data = array(
                 'id'            => $row->id,
                 'username'      => $row->username,
@@ -85,7 +85,7 @@ class User extends CI_Model
                 'ingame_online' => $row->online,
                 'recruiter'     => $row->recruiter
             );
-        
+
             $this->session->set_userdata($user_data);
             return true;
         }
