@@ -18,10 +18,10 @@
 | <-> User_helper -> login()
 */
 
-function sha_pass($username, $password)
+function sha_pass($tmp_username, $tmp_password)
 {
-    $tmp_accountname = trim(strtoupper($accountname));
-    $tmp_password = trim(strtoupper($password));
+    $username = trim(strtoupper($tmp_username));
+    $password = trim(strtoupper($tmp_password));
 
-    return sha1(''.$tmp_accountname.':'.$tmp_password.'');
+    return sha1(''.$username.':'.$password.'');
 }
