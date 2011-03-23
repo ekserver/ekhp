@@ -2,7 +2,7 @@
 <html>
 
     <head>
-        {head:head}
+        {head:head5}
     </head>
 
 <body>
