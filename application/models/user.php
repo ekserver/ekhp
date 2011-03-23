@@ -36,10 +36,9 @@ class User extends CI_Model
     | Gespeichert werden soll dies als Session, sowie ein Cookie gesetzt werden,
     | somit die Informationen public für die Homepage verfügbar sind.
     | Desweiteren besteht die Möglichkeit die Nutzer auch mit der Email-Adresse einloggen zu lassen.
-    | Passwort sollte aus Sicherheitsgründen vorher rehashed werden, um somit nicht das klare
-    | Passwort in dem Login auslesen zu lassen.
+    |
     | -> User_helper -> sha_pass($password)
-    | 1:$name_mail, 2:$password, 3:$remember == FALSE
+    | 1:$name_mail, 2:$password
     */
     function login($name_mail, $password)
     {        
