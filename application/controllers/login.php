@@ -9,36 +9,37 @@ class Login extends CI_Controller {
         parent::__construct();
     }
     
-	function index()
-	{
-        $this->data['main_content'] = 'start';
-		$this->load->view('includes/template', $this->data);
-	}
+    function index()
+    {
+        $this->template['title'] = 'Login | Jetzt einloggen!';
+        $this->template['layout'] = 'default';
+        $this->load->view('template', $this->template);
+    }
 
     function validate()
-	{
-		if( $this->user->login($this->input->post('name_mail'), $this->input->post('password')) )
+    {
+        if( $this->user->login($this->input->post('name_mail'), $this->input->post('password')) )
         {
             redirect('controlpanel/dashboard');
         }
         else
         {
-            $this->data['sitetitle'] = 'Login failed';
-            $this->data['main_content'] = 'login/failed';
+            $this->template['title'] = 'Login failed';
+            $this->template['content'] = 'login/failed';
         }
         $this->index();
 	}
 
-    
 	function logout()
 	{
-        $this->user_model->logout();
+        $this->user->logout();
         redirect('login/loggedout');
 	}
 
-    function loggedout() {
-        $this->data['sitetitle'] = 'Logout';
-        $this->data['main_content'] = 'login/loggedout';
+    function loggedout()
+    {
+        $this->template['title'] = 'Ausgeloggt!';
+        $this->template['content'] = 'login/loggedout';
 		$this->index();
     }
 }

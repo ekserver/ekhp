@@ -21,9 +21,9 @@ class Welcome extends CI_Controller {
     public function __construct()
     {
         parent::__construct();
+        
         $this->template['title'] = 'Willkommen auf EK!';
-
-        $this->template['controller'] = 'welcome';
+        $this->template['content'] = 'welcome';
         $this->template['layout'] = 'default';
     }
      

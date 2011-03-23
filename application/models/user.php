@@ -42,32 +42,29 @@ class User extends CI_Model
     */
     function login($name_mail, $password)
     {
-        if($this->valid_email($name_mail)) // Input was email
+        $db_auth    = $this->load->database('auth', TRUE);
+    
+        if(valid_email($name_mail)) // Input was email
         {
             $email              = $name_mail;
 
-            $this->db_auth->select('username');
-            $this->db_auth->from('account');
-            $this->db_auth->where('email', $email);
-
-            $get_user_by_mail   = $this->db_auth->get();
+            // Select username from account where email = $email
+            $db_auth->select('username')->from('account')->where('email', $email);
+            $get_user_by_mail   = $db_auth->get();
             $row                = $get_user_by_mail->row();
             $username           = $row->username;
-
-            $get_user       = $this->db_auth->get_where('account', array(
-                'username'      => $username,
-                'sha_pass_hash' => $this->sha_pass($username, $password)
-                )
-            );
+            
+            // Select * from account where username = $username AND sha_pass_hash = sha_pass($username, $password)
+            $db_auth->select('*')->from('account')->where('username', $username)->where('sha_pass_hash', sha_pass($username, $password));
+            $get_user = $db_auth->get();
         }
         else // Input was username
         {
-            $username       = $name_mail;
-            $get_user       = $this->db_auth->get_where('account', array(
-                'username'      => $username,
-                'sha_pass_hash' => $this->sha_pass($username, $password)
-                )
-            );
+            $username = $name_mail;
+            
+            // Select * from account where username = $username AND sha_pass_hash = sha_pass($username, $password)
+            $db_auth->select('*')->from('account')->where('username', $username)->where('sha_pass_hash', sha_pass($username, $password));
+            $get_user = $db_auth->get();
         }
 
         if($get_user->num_rows() > 0)
@@ -79,13 +76,13 @@ class User extends CI_Model
                 'username'      => $row->username,
                 'email'         => $row->email,
                 'joindate'      => $row->joindate,
-                'lastip'        => $row->lastip,
+                'lastip'        => $row->last_ip,
                 'status'        => $row->locked,
                 'lastlogin'     => $row->last_login,
                 'ingame_online' => $row->online,
                 'recruiter'     => $row->recruiter
             );
-
+            $this->load->database('default',TRUE);
             $this->session->set_userdata($user_data);
             return true;
         }
@@ -142,5 +139,10 @@ class User extends CI_Model
         else
             error_message($error);
             return false;
+    }
+    
+    function logout()
+    {
+        $this->session->sess_destroy();
     }
 }

@@ -9,7 +9,7 @@ $data = array(
         //HEADER
         'header:header'     => $this->load->view('partials/header'),
         //CONTENT
-        'content:content'   => $this->load->view('controller/'. $controller),
+        'content:content'   => $this->load->view('controller/'. $content),
         //FOOTER
         'footer:footer'     => $this->load->view('partials/footer')
         );
