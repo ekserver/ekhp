@@ -25,7 +25,7 @@ class User extends CI_Model
     | für Informationen wie Vorname, Spitzname, Alter, ect. pp.
     | Dies ist nur die direkte Function "register", benötigt weitere helper zur Abwicklung
     | -> User_helper
-    | 1:$username, 2:$password
+    | 1:$data|array($username, $email, $sha_pass_hash, $expansion)
     */
     function register($data)
     {
