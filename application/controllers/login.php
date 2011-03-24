@@ -13,6 +13,7 @@ class Login extends CI_Controller {
     {
         $this->template['title'] = 'Login | Jetzt einloggen!';
         $this->template['layout'] = 'default';
+        $this->template['content'] = 'welcome';
         $this->load->view('template', $this->template);
     }
 

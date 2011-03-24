@@ -2,7 +2,7 @@
 <html>
 
     <head>
-        {head:head32}
+        {head:head}
     </head>
 
 <body>
