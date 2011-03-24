@@ -89,8 +89,8 @@ class User extends CI_Model
                 'recruiter'     => $row->recruiter
             );
             $this->load->database('default',TRUE);
-            $this->session->set_userdata($user_data);
-            return true;
+
+            return $user_data;
         }
         else
             return false;

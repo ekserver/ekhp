@@ -2,7 +2,7 @@
 
 class Login extends CI_Controller {
 
-    private $data;
+    public $user_data;
 
     function __construct()
     {
@@ -13,15 +13,16 @@ class Login extends CI_Controller {
     {
         $this->template['title'] = 'Login | Jetzt einloggen!';
         $this->template['layout'] = 'default';
+        $this->template['userid'] = $this->session->userdata('id');
         $this->template['content'] = 'welcome';
         $this->load->view('template', $this->template);
     }
 
     function validate()
     {
-        if( $this->user->login($this->input->post('name_mail'), $this->input->post('password')) )
+        if( $user_data = $this->user->login($this->input->post('name_mail'), $this->input->post('password')) )
         {
-            redirect('controlpanel/dashboard');
+            $this->session->set_userdata($user_data);
         }
         else
         {
