@@ -266,7 +266,7 @@ $config['sess_time_to_update']	= 300;
 |
 */
 $config['cookie_prefix']	= "";
-$config['cookie_domain']	= ".eternal-knighst.net";
+$config['cookie_domain']	= ".eternal-knights.net";
 $config['cookie_path']		= "/";
 $config['cookie_secure']	= FALSE;
 
