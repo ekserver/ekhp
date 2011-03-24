@@ -29,8 +29,7 @@ class User extends CI_Model
     */
     function register($data)
     {
-        $db_auth    = $this->load->database('auth', TRUE);
-        $query      = $db_auth->insert('account', $data);
+        $query      = $this->insert('account', $data);
         
         if($query)
             return true;
@@ -48,29 +47,27 @@ class User extends CI_Model
     */
     function login($name_mail, $password)
     {
-        $db_auth    = $this->load->database('auth', TRUE);
-    
         if(valid_email($name_mail)) // Input was email
         {
             $email              = $name_mail;
 
             // Select username from account where email = $email
-            $db_auth->select('username')->from('account')->where('email', $email);
-            $get_user_by_mail   = $db_auth->get();
+            $this->db->select('username')->from('account')->where('email', $email);
+            $get_user_by_mail   = $this->db->get();
             $row                = $get_user_by_mail->row();
             $username           = $row->username;
             
             // Select * from account where username = $username AND sha_pass_hash = sha_pass($username, $password)
-            $db_auth->select('*')->from('account')->where('username', $username)->where('sha_pass_hash', sha_pass($username, $password));
-            $get_user = $db_auth->get();
+            $this->db->select('*')->from('account')->where('username', $username)->where('sha_pass_hash', sha_pass($username, $password));
+            $get_user = $this->db->get();
         }
         else // Input was username
         {
             $username = $name_mail;
             
             // Select * from account where username = $username AND sha_pass_hash = sha_pass($username, $password)
-            $db_auth->select('*')->from('account')->where('username', $username)->where('sha_pass_hash', sha_pass($username, $password));
-            $get_user = $db_auth->get();
+            $this->db->select('*')->from('account')->where('username', $username)->where('sha_pass_hash', sha_pass($username, $password));
+            $get_user = $this->db->get();
         }
 
         if($get_user->num_rows() > 0)
@@ -88,8 +85,6 @@ class User extends CI_Model
                 'ingame_online' => $row->online,
                 'recruiter'     => $row->recruiter
             );
-            $this->load->database('default',TRUE);
-
             return $user_data;
         }
         else

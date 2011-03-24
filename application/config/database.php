@@ -44,7 +44,7 @@ $active_record = TRUE;
 $db['default']['hostname'] = 'localhost';
 $db['default']['username'] = 'root';
 $db['default']['password'] = '';
-$db['default']['database'] = 'ek_homepage_beta';
+$db['default']['database'] = 'ek_authserver';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;
@@ -56,24 +56,6 @@ $db['default']['dbcollat'] = 'utf8_general_ci';
 $db['default']['swap_pre'] = '';
 $db['default']['autoinit'] = TRUE;
 $db['default']['stricton'] = FALSE;
-
-// AUTHSERVER DATABASE
-
-$db['auth']['hostname'] = 'localhost';
-$db['auth']['username'] = 'root';
-$db['auth']['password'] = '';
-$db['auth']['database'] = 'ek_authserver';
-$db['auth']['dbdriver'] = 'mysql';
-$db['auth']['dbprefix'] = '';
-$db['auth']['pconnect'] = TRUE;
-$db['auth']['db_debug'] = TRUE;
-$db['auth']['cache_on'] = FALSE;
-$db['auth']['cachedir'] = '';
-$db['auth']['char_set'] = 'utf8';
-$db['auth']['dbcollat'] = 'utf8_general_ci';
-$db['auth']['swap_pre'] = '';
-$db['auth']['autoinit'] = TRUE;
-$db['auth']['stricton'] = FALSE;
 
 
 /* End of file database.php */

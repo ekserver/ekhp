@@ -63,10 +63,8 @@ class Signup extends CI_Controller {
     
     function check_username($username)
     {
-        $db_auth = $this->load->database('auth', TRUE);
-        
-        $db_auth->select('id')->from('account')->like('username', $username);
-        $get_username = $db_auth->get();
+        $this->db->select('id')->from('account')->like('username', $username);
+        $get_username = $this->db->get();
         
         if($get_username->num_rows() > 0)
         {
@@ -81,10 +79,8 @@ class Signup extends CI_Controller {
     
     function check_email($email)
     {
-        $db_auth = $this->load->database('auth', TRUE);
-        
-        $db_auth->select('id')->from('account')->where('email', $email);
-        $get_email = $db_auth->get();
+        $this->db->select('id')->from('account')->where('email', $email);
+        $get_email = $this->db->get();
         
         if($get_email->num_rows() > 0)
         {
@@ -102,10 +98,8 @@ class Signup extends CI_Controller {
         // Load date helper
         $this->load->helper('date');
         
-        $db_auth = $this->load->database('auth', TRUE);
-        
-        $db_auth->select('*')->from('ip_banned')->where('ip', $ip);
-        $get_ip = $db_auth->get();
+        $this->db->select('*')->from('ip_banned')->where('ip', $ip);
+        $get_ip = $this->db->get();
         
         if($get_ip->num_rows() > 0)
         {

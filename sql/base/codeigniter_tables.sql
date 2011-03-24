@@ -7,6 +7,6 @@ session_id VARCHAR(40) DEFAULT '0' NOT NULL,
 ip_address VARCHAR(16) DEFAULT '0' NOT NULL,
 user_agent VARCHAR(50) NOT NULL,
 last_activity INT(10) UNSIGNED DEFAULT 0 NOT NULL,
-user_data TEXT '' NOT NULL,
+user_data TEXT DEFAULT '' NOT NULL,
 PRIMARY KEY (session_id)
 );
