@@ -22,11 +22,11 @@ class Signup extends CI_Controller {
     
     function signup()
     {
-        $this->form_validation->set_rules('email', 'Email-Adresse', 'trim|required|valid_email|callback_check_email');
-        $this->form_validation->set_rules('username', 'Benutzername', 'trim|required|min_length[4]|max_length[12]|callback_check_username');
+        $this->form_validation->set_rules('email', 'Email-Adresse', 'trim|required|valid_email|callback__check_email');
+        $this->form_validation->set_rules('username', 'Benutzername', 'trim|required|min_length[4]|max_length[12]|callback__check_username');
         $this->form_validation->set_rules('password', 'Passwort', 'trim|required|min_length[4]|max_length[32]');
         $this->form_validation->set_rules('password2', 'Passwort wiederholen', 'trim|required|matches[password]');
-        $this->form_validation->set_rules('ip', 'Ip-Adresse', 'trim|required|callback_check_ip');
+        $this->form_validation->set_rules('ip', 'Ip-Adresse', 'trim|required|callback__check_ip');
         
         /*$this->form_validation->set_rules('firstname', 'Vorname', 'trim|min_length[2]|max_length[12]');
         $this->form_validation->set_rules('lastname', 'Nachname', 'trim|min_length[3]|max_length[12]');
@@ -61,7 +61,7 @@ class Signup extends CI_Controller {
         }
     }
     
-    function check_username($username)
+    private function _check_username($username)
     {
         $this->db->select('id')->from('account')->like('username', $username);
         $get_username = $this->db->get();
@@ -77,7 +77,7 @@ class Signup extends CI_Controller {
         }
     }
     
-    function check_email($email)
+    private function _check_email($email)
     {
         $this->db->select('id')->from('account')->where('email', $email);
         $get_email = $this->db->get();
@@ -93,7 +93,7 @@ class Signup extends CI_Controller {
         }
     }
     
-    function check_ban($ip)
+    private function _check_ban($ip)
     {
         // Load date helper
         $this->load->helper('date');
