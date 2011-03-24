@@ -2,8 +2,6 @@
 
 class Login extends CI_Controller {
 
-    public $user_data;
-
     function __construct()
     {
         parent::__construct();

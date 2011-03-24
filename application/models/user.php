@@ -29,7 +29,7 @@ class User extends CI_Model
     */
     function register($data)
     {
-        $query      = $this->insert('account', $data);
+        $query      = $this->db->insert('account', $data);
         
         if($query)
             return true;
