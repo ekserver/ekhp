@@ -25,11 +25,17 @@ class User extends CI_Model
     | für Informationen wie Vorname, Spitzname, Alter, ect. pp.
     | Dies ist nur die direkte Function "register", benötigt weitere helper zur Abwicklung
     | -> User_helper
-    | 1:$username, 2:$password, 3:$email
+    | 1:$username, 2:$password
     */
-    function register($username, $password, $email/*, $firstname, $lastname*/)
+    function register($data)
     {
-
+        $db_auth    = $this->load->database('auth', TRUE);
+        $query      = $db_auth->insert('account', $data);
+        
+        if($query)
+            return true;
+        else
+            return false;
     }
     /*
     | Loggt Benutzer mit den Logindaten der Authserver Database ein.
