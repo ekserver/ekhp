@@ -18,16 +18,17 @@ class Welcome extends CI_Controller {
 	 * @see http://codeigniter.com/user_guide/general/urls.html
 	 */
      
-    public function __construct()
+    function __construct()
     {
         parent::__construct();
         
         $this->template['title'] = 'Willkommen auf EK!';
         $this->template['content'] = 'welcome';
+        $this->template['userid'] = $this->session->userdata('id');
         $this->template['layout'] = 'default';
     }
      
-	public function index()
+	function index()
 	{
 		$this->load->view('template', $this->template);
 	}

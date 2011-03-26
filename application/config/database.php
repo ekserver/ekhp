@@ -75,6 +75,5 @@ $db['auth']['swap_pre'] = '';
 $db['auth']['autoinit'] = TRUE;
 $db['auth']['stricton'] = FALSE;
 
-
 /* End of file database.php */
 /* Location: ./application/config/database.php */
