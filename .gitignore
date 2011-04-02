@@ -1,5 +1,2 @@
-/application/config/database.php
-.directory
-*.orig
-*.rej
-*~
+application/config/database.php
+application/config/config.php
