@@ -146,4 +146,16 @@ class User extends CI_Model
     {
         $this->session->sess_destroy();
     }
+    
+    /*
+    | Überprüft, ob der Nutzer eingeloggt ist
+    | Rückgabe: eingeloggt = TRUE, nicht eingeloggt = FALSE
+    */
+    function is_logged_in()
+    {
+        if ( $this->session->userdata('id') )
+            return TRUE;
+        else
+            return FALSE;
+    }
 }
