@@ -9,10 +9,8 @@ class Login extends CI_Controller {
     
     function index()
     {
-        $this->template['title'] = 'Login | Jetzt einloggen!';
         $this->template['layout'] = 'default';
         $this->template['userid'] = $this->session->userdata('id');
-        $this->template['content'] = 'welcome';
         $this->load->view('template', $this->template);
     }
 
@@ -21,13 +19,14 @@ class Login extends CI_Controller {
         if( $user_data = $this->user->login($this->input->post('name_mail'), $this->input->post('password')) )
         {
             $this->session->set_userdata($user_data);
+            redirect('welcome');
         }
         else
         {
             $this->template['title'] = 'Login failed';
             $this->template['content'] = 'login/failed';
+            $this->index();
         }
-        $this->index();
 	}
 
 	function logout()

@@ -21,15 +21,13 @@ class Welcome extends CI_Controller {
     function __construct()
     {
         parent::__construct();
-        
-        $this->template['title'] = 'Willkommen auf EK!';
-        $this->template['content'] = 'welcome';
-        $this->template['userid'] = $this->session->userdata('id');
-        $this->template['layout'] = 'default';
     }
      
 	function index()
 	{
+        $this->template['title'] = 'Willkommen auf EK!';
+        $this->template['content'] = 'welcome';
+        $this->template['layout'] = 'default';
 		$this->load->view('template', $this->template);
 	}
 }

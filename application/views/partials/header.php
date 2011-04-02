@@ -3,7 +3,8 @@
     </div>
     
     <div id="login-container">
-        <h1>Login</h1>
+        <?php if(!$this->session->userdata('id')) : ?>
+        <h3>Login</h3>
             <p>
                 <?php
                     echo form_open('login/validate');
@@ -14,4 +15,7 @@
                     echo form_close();
                 ?>
             </p>
+        <?php else : ?>
+        <h3>Hallo <?php echo $this->session->userdata('username')?>!</h3>
+        <?php endif ?>
     </div>

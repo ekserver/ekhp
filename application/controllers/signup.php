@@ -15,7 +15,7 @@ class Signup extends CI_Controller {
         $this->load->view('template', $this->template);
     }
     
-    function signup()
+    function create()
     {
         // Load form_validation library
         $this->load->library('form_validation');
@@ -37,9 +37,9 @@ class Signup extends CI_Controller {
                 'email'         => $this->input->post('email'),
                 'sha_pass_hash' => sha_pass($this->input->post('password')),
                 'expansion'     => $this->input->post('expansion'),
-
                 'firstname'     => $this->input->post('firstname'),
-                'lastname'      => $this->input->post('lastname')
+                'lastname'      => $this->input->post('lastname'),
+                'age'           => ''$this->input->post('age_d').'-'.$this->input->post('age_m').'-'.$this->input->post('age_y')''
             );
             
             if($this->user->register($data_game))
@@ -48,11 +48,10 @@ class Signup extends CI_Controller {
             }
             return false;
         }
-        else
-            return false;
+        $this->index();
     }
     
-    private function _check_username($username)
+    function _check_username($username)
     {
         $this->db->select('id')->from('account')->like('username', $username);
         $get_username = $this->db->get();
@@ -68,7 +67,7 @@ class Signup extends CI_Controller {
         }
     }
     
-    private function _check_email($email)
+    function _check_email($email)
     {
         $this->db->select('id')->from('account')->where('email', $email);
         $get_email = $this->db->get();
@@ -84,7 +83,7 @@ class Signup extends CI_Controller {
         }
     }
     
-    private function _check_ban($ip)
+    function _check_ban($ip)
     {
         // Load date helper
         $this->load->helper('date');
