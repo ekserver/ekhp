@@ -1,5 +1,7 @@
+application/logs/*.php
 application/config/database.php
 application/config/config.php
+xampp/
 *.orig
 *.rej
 *.patch
