@@ -1,8 +1,23 @@
 ##############################################
 # -- COPYRIGHT ETERNAL-KNIGHTS.NET 2011
-# -- EK-CMS USING CODEIGNITER AS PHP FRAMEWORK
 # -- IN DEVELOPMENT
 #
-# -- @author:
-# -- Lennart, Max, Sebastian
-# --
+# -- @author: Lennart, Max, Sebastian
+# -- @email: valuur@googlemail.com
+# -- @git-http: http://github.com/ekserver/ekhp
+# -- @git-pull: git pull http://github.com/ekserver/ekhp.git master
+# -- @version: v0.5
+#
+##############################################
+# -- INFO
+#
+#
+# -- This CMS is using Codeigniter Framework v1.3 as base. Thanks goes to Codeigniter Developers, ElbiLabs and all its helpers.
+# --    
+# -- EK-CMS is still in development and will have following functions
+#       - Authentication & Registration | Login is possible with email or username which will used for login into World of Warcraft
+#       - Accountcenter | Possibility for users to edit accuont data like username, password recovery, account locking, ect.
+#       - Arsenal | A basic and smart viewable armory to watch characters of every realm.
+#       - Vote Reward | A system to give ingame rewards to players for voting points
+#
+##############################################
