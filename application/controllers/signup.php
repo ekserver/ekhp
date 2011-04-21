@@ -35,17 +35,19 @@ class Signup extends CI_Controller {
             $data               = array(
                 'username'      => $this->input->post('username'),
                 'email'         => $this->input->post('email'),
-                'sha_pass_hash' => sha_pass($this->input->post('password')),
+                'sha_pass_hash' => sha_pass($this->input->post('username'), $this->input->post('password')),
                 'expansion'     => $this->input->post('expansion'),
                 'firstname'     => $this->input->post('firstname'),
                 'lastname'      => $this->input->post('lastname'),
-                'age'           => ''$this->input->post('age_d').'-'.$this->input->post('age_m').'-'.$this->input->post('age_y')''
+                'age'           => $this->input->post('age_d').'-'.$this->input->post('age_m').'-'.$this->input->post('age_y'),
+                'last_ip'       => $this->input->post('ip')
             );
             
-            if($this->user->register($data_game))
+            if($this->user->register($data))
             {
                 redirect('signup/success');
             }
+            
             return false;
         }
         $this->index();
@@ -53,12 +55,12 @@ class Signup extends CI_Controller {
     
     function _check_username($username)
     {
-        $this->db->select('id')->from('account')->like('username', $username);
+        $this->db->select('id')->from('account')->where('username', $username);
         $get_username = $this->db->get();
         
         if($get_username->num_rows() > 0)
         {
-            $this->form_validation->set_message('check_username', 'Ein Benutzername &auml;hnlich "%s" ist bereits vorhanden!');
+            $this->form_validation->set_message('check_username', 'Der Benutzername "%s" ist bereits vorhanden!');
             return false;
         }
         else
@@ -83,7 +85,7 @@ class Signup extends CI_Controller {
         }
     }
     
-    function _check_ban($ip)
+    function _check_ip($ip)
     {
         // Load date helper
         $this->load->helper('date');

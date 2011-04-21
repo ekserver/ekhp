@@ -51,15 +51,39 @@ class User extends CI_Model
         {
             $email              = $name_mail;
 
-            // Select username from account where email = $email
-            $this->db->select('username')->from('account')->where('email', $email);
-            $get_user_by_mail   = $this->db->get();
-            $row                = $get_user_by_mail->row();
-            $username           = $row->username;
+            // Select * from account where email = $email
+            $this->db->select('*')->from('account')->where('email', $email);
+            $get_username = $this->db->get();
             
-            // Select * from account where username = $username AND sha_pass_hash = sha_pass($username, $password)
-            $this->db->select('*')->from('account')->where('username', $username)->where('sha_pass_hash', sha_pass($username, $password));
-            $get_user = $this->db->get();
+            // If username exist
+            if($get_username->num_rows() > 0)
+            {
+                $row_username   = $get_username->row();
+                $f_username     = $row->username;
+                
+                // Select * from account where username = $username AND sha_pass_hash = sha_pass($f_username, $password)
+                $this->db->select('*')->from('account')->where('email', $email)->where('sha_pass_hash', sha_pass($f_username, $password));
+                $get_user = $this->db->get();
+                
+                if($get_user->num_rows() > 0)
+                {
+                    $row = $get_user->row();
+
+                    $user_data = array(
+                        'id'            => $row->id,
+                        'username'      => $row->username,
+                        'email'         => $row->email,
+                        'joindate'      => $row->joindate,
+                        'lastip'        => $row->last_ip,
+                        'status'        => $row->locked,
+                        'lastlogin'     => $row->last_login,
+                        'ingame_online' => $row->online,
+                        'recruiter'     => $row->recruiter
+                    );
+                    
+                    return $user_data;
+                }
+            }
         }
         else // Input was username
         {
@@ -68,27 +92,27 @@ class User extends CI_Model
             // Select * from account where username = $username AND sha_pass_hash = sha_pass($username, $password)
             $this->db->select('*')->from('account')->where('username', $username)->where('sha_pass_hash', sha_pass($username, $password));
             $get_user = $this->db->get();
-        }
+            
+            if($get_user->num_rows() > 0)
+            {
+                $row = $get_user->row();
 
-        if($get_user->num_rows() > 0)
-        {
-            $row = $get_user->row();
-
-            $user_data = array(
-                'id'            => $row->id,
-                'username'      => $row->username,
-                'email'         => $row->email,
-                'joindate'      => $row->joindate,
-                'lastip'        => $row->last_ip,
-                'status'        => $row->locked,
-                'lastlogin'     => $row->last_login,
-                'ingame_online' => $row->online,
-                'recruiter'     => $row->recruiter
-            );
-            return $user_data;
+                $user_data = array(
+                    'id'            => $row->id,
+                    'username'      => $row->username,
+                    'email'         => $row->email,
+                    'joindate'      => $row->joindate,
+                    'lastip'        => $row->last_ip,
+                    'status'        => $row->locked,
+                    'lastlogin'     => $row->last_login,
+                    'ingame_online' => $row->online,
+                    'recruiter'     => $row->recruiter
+                );
+                $this->session->set_userdata($user_data);
+                return true;
+            }
         }
-        else
-            return false;
+        return false;
     }
     
     /*
@@ -153,7 +177,7 @@ class User extends CI_Model
     */
     function is_logged_in()
     {
-        if ( $this->session->userdata('id') )
+        if ($this->session->userdata('id'))
             return TRUE;
         else
             return FALSE;

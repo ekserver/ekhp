@@ -8,12 +8,12 @@
                 <table cellpadding="2" cellspacing="5" border="0">
                     <tr>
                         <td><strong>Deine Emailadresse</strong></td>
-                        <td><?php echo form_input('email', 'christian@web.de', 'type="text" size="23" onfocus="if(this.value==\'christian@web.de\')this.value=\'\'"');?></td>
+                        <td><?php echo form_input('email', 'Your Email', 'type="text" size="23" onfocus="if(this.value==\'Your Email\')this.value=\'\'"');?></td>
                         <td><?php echo form_error('email'); ?></td>
                     </tr>
                     <tr>
                         <td><strong>Dein Benutzername</strong></td>
-                        <td><?php echo form_input('username', 'z.B Steffen','type="text" size="23" onfocus="if(this.value==\'z.B Steffen\')this.value=\'\'"');?></td>
+                        <td><?php echo form_input('username', 'Your Username','type="text" size="23" onfocus="if(this.value==\'Your Username\')this.value=\'\'"');?></td>
                         <td><?php echo form_error('username'); ?></td>
                     </tr>
                     <tr>
@@ -27,9 +27,16 @@
                         <td><?php echo form_error('password2'); ?></td>
                     </tr>
                     <tr>
+                        <?php
+                            $expansion_options = array(
+                                '0' => 'Classic',
+                                '1' => 'Burning Crusade',
+                                '2' => 'Wrath of the Lich King',
+                                );
+                        ?>
                         <td><strong>Erweiterung</strong></td>
-                        <td><?php echo form_dropdown('expansion', $options, 
-                        <td><?php echo form_hidden('ip');?></td>
+                        <td><?php echo form_dropdown('expansion', $expansion_options, '2');?></td>
+                        <td><?php echo form_hidden('ip', $_SERVER['REMOTE_ADDR']);?></td>
                     </tr>
                 </table>
             </fieldset>
@@ -40,12 +47,12 @@
                 <table cellpadding="2" cellspacing="5" border="0">
                     <tr>
                         <td><strong>Vorname</strong></td>
-                        <td><?php echo form_input('firstname', '', 'type="text" size="23"');?></td>
+                        <td><?php echo form_input('firstname', 'Your Firstname', 'type="text" size="23" onfocus="if(this.value==\'Your Firstname\')this.value=\'\'"');?></td>
                         <td><?php echo form_error('firstname'); ?></td>
                     </tr>
                     <tr>
                         <td><strong>Nachname</strong></td>
-                        <td><?php echo form_input('lastname', '', 'type="text" size="23"');?></td>
+                        <td><?php echo form_input('lastname', 'Your Lastname', 'type="text" size="23" onfocus="if(this.value==\'Your Lastname\')this.value=\'\'"');?></td>
                         <td><?php echo form_error('lastname'); ?></td>
                     </tr>
                     <tr>
@@ -58,7 +65,7 @@
                             $options_m = range(1,12,1);
                             $options_d = range(1,31,1);
                         ?>
-                        <td><?php echo form_dropdown('age_day', $options_d, '12'); echo form_dropdown('age_month', $options_m, 'Januar'); echo form_dropdown('age_year', $options_y, '1911');?></td>
+                        <td><?php echo form_dropdown('age_d', $options_d, '12'); echo form_dropdown('age_m', $options_m, 'Januar'); echo form_dropdown('age_y', $options_y, '1911');?></td>
                         <td><?php echo form_error('age'); ?></td>
                     </tr>
                 </table>

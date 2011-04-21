@@ -3,7 +3,7 @@
     </div>
     
     <div id="login-container">
-        <?php if(!$this->session->userdata('id')) : ?>
+        <?php if(!$this->user->is_logged_in()):?>
         <h3>Login</h3>
             <p>
                 <?php
@@ -15,7 +15,7 @@
                     echo form_close();
                 ?>
             </p>
-        <?php else : ?>
-        <h3>Hallo <?php echo $this->session->userdata('username')?>!</h3>
-        <?php endif ?>
+        <? else: ?>
+        <h4>Hallo <?php echo $this->session->userdata('username')?>! | <a href="login/logout">Logout</a></h4>
+        <? endif; ?>
     </div>
