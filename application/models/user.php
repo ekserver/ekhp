@@ -61,27 +61,12 @@ class User extends CI_Model
                 $row_username   = $get_username->row();
                 $f_username     = $row->username;
                 
-                // Select * from account where username = $username AND sha_pass_hash = sha_pass($f_username, $password)
-                $this->db->select('*')->from('account')->where('email', $email)->where('sha_pass_hash', sha_pass($f_username, $password));
-                $get_user = $this->db->get();
-                
-                if($get_user->num_rows() > 0)
+                // Get account data
+                if($user_data = get_account_data($f_username, $password))
                 {
-                    $row = $get_user->row();
-
-                    $user_data = array(
-                        'id'            => $row->id,
-                        'username'      => $row->username,
-                        'email'         => $row->email,
-                        'joindate'      => $row->joindate,
-                        'lastip'        => $row->last_ip,
-                        'status'        => $row->locked,
-                        'lastlogin'     => $row->last_login,
-                        'ingame_online' => $row->online,
-                        'recruiter'     => $row->recruiter
-                    );
-                    
-                    return $user_data;
+                    // Set session data
+                    $this->session->set_userdata($user_data);
+                    return true;
                 }
             }
         }
@@ -89,25 +74,10 @@ class User extends CI_Model
         {
             $username = $name_mail;
             
-            // Select * from account where username = $username AND sha_pass_hash = sha_pass($username, $password)
-            $this->db->select('*')->from('account')->where('username', $username)->where('sha_pass_hash', sha_pass($username, $password));
-            $get_user = $this->db->get();
-            
-            if($get_user->num_rows() > 0)
+            // Get account data
+            if($user_data = get_account_data($username, $password))
             {
-                $row = $get_user->row();
-
-                $user_data = array(
-                    'id'            => $row->id,
-                    'username'      => $row->username,
-                    'email'         => $row->email,
-                    'joindate'      => $row->joindate,
-                    'lastip'        => $row->last_ip,
-                    'status'        => $row->locked,
-                    'lastlogin'     => $row->last_login,
-                    'ingame_online' => $row->online,
-                    'recruiter'     => $row->recruiter
-                );
+                // Set session data
                 $this->session->set_userdata($user_data);
                 return true;
             }
