@@ -16,7 +16,7 @@
 							<label>Passwort</label>
 							<input type="password" name="password" value="" /><br />
 							
-							<input type="submit" name="submit" value="Anmelden" />
+							<input type="submit" name="submit" value="" />
 						</form>
 					</div>
 					<div>

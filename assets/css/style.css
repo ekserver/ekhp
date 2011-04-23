@@ -30,10 +30,6 @@ body {
 	padding: 22px 32px 0 32px;
 }
 
-#header ul li {
-	float: left;
-}
-
 /* buttons */
 #header ul li > a, #header ul li.dropdown span {
 	display: block;
@@ -46,12 +42,14 @@ body {
 	font-weight: normal;
 	color: white;
 	height: 37px;
-	margin: 0 10px;
 	padding: 0 5px;
+	float: left;
 }
 
-#header ul li.dropdown span { 
-	padding-right: 6px;
+#header ul li {
+	float: left;
+	padding-left: 9px;
+	padding-right: 9px;
 }
 
 #header ul li:hover > a {
@@ -67,41 +65,27 @@ body {
 }
 
 /* button corners (normal button) */
-#header ul li:hover > a div {
-	display: block;
-	height: 37px;
+#header ul li:hover {
+	background: url(../images/topmenu-left.png) left top no-repeat;
+}
+
+#header ul li:hover b {
+	position: absolute;
 	width: 9px;
-}
-
-#header ul li:hover > a div.left {
-	background: url(../images/topmenu-left.png) no-repeat;
-	float: left;
-	margin-left: -14px;
-}
-
-#header ul li:hover > a div.right {
+	height: 37px;
 	background: url(../images/topmenu-right.png) no-repeat;
-	float: right;
-	margin-right: -14px;
 }
 
 /* button corners (dropdown button) */
-#header ul li.dropdown:hover > span div {
-	display: block;
-	height: 37px;
+#header ul li.dropdown:hover {
+	background: url(../images/topmenu-dropdown-left.png) left top no-repeat;
+}
+
+#header ul li.dropdown:hover b {
+	position: absolute;
 	width: 9px;
-}
-
-#header ul li.dropdown:hover > span div.left {
-	background: url(../images/topmenu-dropdown-left.png) no-repeat;
-	float: left;
-	margin-left: -13px;
-}
-
-#header ul li.dropdown:hover > span div.right {
+	height: 37px;
 	background: url(../images/topmenu-dropdown-right.png) no-repeat;
-	float: right;
-	margin-right: -15px;
 }
 
 /* button dropdown pane */
@@ -116,21 +100,21 @@ body {
 	height: 205px;
 	width: 444px;
 	min-width: 170px;
-	margin-left: 3px;
-	margin-top: -2px;
+	margin-left: -8px;
+	margin-top: 35px;
 	
 	font-family: "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", sans-serif;
 	font-size: 12px;
 	color: white;
 }
 
-#header ul li.dropdown:hover > div div {
+#header ul li.dropdown > div div {
 	width: 38%;
 	float: left;
 	padding: 20px 25px;
 }
 
-#header ul li.dropdown:hover > div h3 {
+#header ul li.dropdown > div h3 {
 	font-size: 15px;
 	font-family: "Trebuchet MS", sans-serif;
 	font-weight: 300;
@@ -139,7 +123,7 @@ body {
 	color: white;
 }
 
-#header ul li.dropdown:hover > div a#account-erstellen {
+#header ul li.dropdown > div a#account-erstellen {
 	display: block;
 	text-indent: -9999px;
 	background: url(../images/account-erstellen.png) no-repeat;
@@ -147,12 +131,12 @@ body {
 	height: 61px;
 }
 
-#header ul li.dropdown:hover > div a#account-erstellen:hover {
+#header ul li.dropdown > div a#account-erstellen:hover {
 	background-image: url(../images/account-erstellen-hover.png);
 }
 
 /* button dropdown pane form */
-#header ul li.dropdown:hover input[type="text"], #header ul li.dropdown:hover input[type="password"] {
+#header ul li.dropdown input[type="text"], #header ul li.dropdown input[type="password"] {
 	width: 176px;
 	height: 27px;
 	border: 0;
@@ -163,15 +147,15 @@ body {
 	font-size: 12px;
 	margin-bottom: 7px;
 	color: #0b0b0c;
+	line-height: 26px;
 }
 
-#header ul li.dropdown:hover input[type="text"]:focus, #header ul li.dropdown:hover input[type="password"]:focus {
+#header ul li.dropdown input[type="text"]:focus, #header ul li.dropdown input[type="password"]:focus {
 	background-image: url(../images/topmenu-dropdown-pane-input-hover.png);
 	color: #cbd6e9;
 }
 
-#header ul li.dropdown:hover input[type="submit"] {
-	text-indent: -9999px;
+#header ul li.dropdown input[type="submit"] {
 	border: 0;
 	background: url(../images/anmelden.png) no-repeat;
 	width: 107px;
@@ -180,11 +164,11 @@ body {
 	cursor: pointer;
 }
 
-#header ul li.dropdown:hover input[type="submit"]:focus, #header ul li.dropdown:hover input[type="submit"]:hover {
+#header ul li.dropdown input[type="submit"]:focus, #header ul li.dropdown input[type="submit"]:hover {
 	background-image: url(../images/anmelden-hover.png);
 }
 
-#header ul li.dropdown:hover label {
+#header ul li.dropdown label {
 	display: block;
 	color: #bac0c8;
 	font-weight: normal;
