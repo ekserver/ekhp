@@ -52,17 +52,18 @@ class User extends CI_Model
             $email              = $name_mail;
 
             // Select * from account where email = $email
-            $this->db->select('*')->from('account')->where('email', $email);
+            $this->db->select('username')->from('account')->where('email', $email);
             $get_username = $this->db->get();
             
             // If username exist
             if($get_username->num_rows() > 0)
             {
-                $row_username   = $get_username->row();
-                $f_username     = $row->username;
+                $row        = $get_username->row();
+                
+                $username   = $row->username;
                 
                 // Get account data
-                if($user_data = get_account_data($f_username, $password))
+                if($user_data = get_account_data($username, $password))
                 {
                     // Set session data
                     $this->session->set_userdata($user_data);
@@ -136,6 +137,85 @@ class User extends CI_Model
             return false;
     }
     
+    function recover_password($attribute, $security_answer)
+    {
+        // Load Email helper
+        $this->load->helper('email');
+
+        if(valid_email($attribute))
+        {
+            $email = $attribute;
+            $this->db->select('*')->from('account')->where('email', $email);
+            $data = $this->db->get();
+        }
+        else
+        {
+            $username = $attribute;
+            $this->db->select('*')->from('account')->where('username', $username);
+            $data = $this->db->get();
+        }
+        
+        if($data->num_rows() > 0)
+        {
+            $row                = $data->row();
+            
+            $security_answer_db = $row->security_answer;
+            $email              = $row->email;
+            $username           = $row->username;
+            $firstname          = $row->firstname;
+                
+            if($security_answer == $security_answer_db)
+            {
+                // generate password
+                $pass_pool = "qwertzupasdfghkyxcvbnm";
+                $pass_pool .= "23456789";
+                $pass_pool .= "WERTZUPLKJHGFDSAYXCVBNM";
+                
+                srand((double)microtime()*1000000);
+
+                for($i = 0; $i < 5; $i++)
+                {
+                    $password .= substr($pass_pool,(rand()%(strlen($pass_pool))), 1);
+                }
+                
+                $this->email->from('password@eternal-knights.net', 'Eternal-Knights.net');
+                $this->email->to($email);
+                $this->email->subject('Your new Password');
+                    
+                $message = '
+                <html>
+                <head>
+                    <title>Your new password</title>
+                </head>
+                <body>
+                    <p>Hi '.$firstname.'!</p>
+                    <p>Your new password is:</p>
+                    <p></p>
+                    <p><b>'.$password.'</b>
+                    <p></p>
+                    <p>The Eternal-Knights-Team</p>
+                </body>
+                </html>
+                ';
+                    
+                $this->email->message($message);
+                
+                if($this->email->send())
+                {
+                    $update_data = array(
+                        'sha_pass_hash' => sha_pass($username, $password)
+                    );
+                    $this->db->where('username', $username);
+                    $this->db->update('account', $update_data);
+                    
+                    return true;
+                }
+            }
+        }
+        
+        return false;
+    }
+
     function logout()
     {
         $this->session->sess_destroy();

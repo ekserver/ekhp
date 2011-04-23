@@ -16,7 +16,7 @@ class Login extends CI_Controller {
 
     function validate()
     {
-        if($user_data = $this->user->login($this->input->post('name_mail'), $this->input->post('password')))
+        if($this->user->login($this->input->post('name_mail'), $this->input->post('password')))
         {
             redirect('welcome');
         }
