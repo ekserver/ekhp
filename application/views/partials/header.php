@@ -1,21 +1,37 @@
-    <div id="header_title">
-    <h1><?php echo $title;?></h1>
-    </div>
-    
-    <div id="login-container">
-        <?php if(!$this->user->is_logged_in()):?>
-        <h3>Login</h3>
-            <p>
-                <?php
-                    echo form_open('login/validate');
-                    echo form_input('name_mail', 'Email/Benutzername', 'type="text" size="23" onfocus="if(this.value==\'Email/Benutzername\')this.value=\'\'"');
-                    echo form_password('password', 'Passwort', 'type="password" size="23" onfocus="if(this.value==\'Password\')this.value=\'\'"');
-                    echo form_submit('submit', 'Login', 'style="width: 80px"');
-                    echo '<br/><a href="#" >Passwort vergessen?</a>';
-                    echo form_close();
-                ?>
-            </p>
-        <? else: ?>
-        <h4>Hallo <?php echo $this->session->userdata('username')?>! | <a href="login/logout">Logout</a></h4>
-        <? endif; ?>
+    <div id="header">
+    	<ul>
+    		<li><a href="#">Home</a></li>
+    		<li><a href="#">Forum</a></li>
+    		<li class="dropdown">
+    			<span>Account</span>
+    			<div>
+    				<?if(!$this->user->is_logged_in()):?>
+					<div>
+						<h3>Accountverwaltung</h3>
+						
+						<form action="" method="post">
+							<label>E-Mail / Accountname</label>
+							<input type="text" name="name_mail" value="" /><br />
+							
+							<label>Passwort</label>
+							<input type="password" name="password" value="" /><br />
+							
+							<input type="submit" name="submit" value="Anmelden" />
+						</form>
+					</div>
+					<div>
+						<h3>Noch keinen Account?</h3>
+						Jetzt registrieren und sofort loslegen &ndash; 100% kostenlos!<br /><br /><br />
+						<a href="#" id="account-erstellen">Account erstellen</a>
+					</div>
+					<?else:?>
+					<div>
+						Hallo <?php echo $this->session->userdata('username')?>! | <a href="login/logout">Logout</a>
+					</div>
+					<?endif?>
+    			</div>
+    		</li>
+    		<li><a href="#">Server</a></li>
+    		<li><a href="#">Armory</a></li>
+    	</ul>
     </div>

@@ -1,0 +1,201 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	background: #000911;
+	color: white;
+	font-family: Arial, sans-serif;
+}
+
+#header {
+	width: 100%;
+	background: url(../images/back.png) center top no-repeat;
+	height: 327px;
+	position: absolute;
+	top: 0;
+}
+
+#header ul {
+	position: absolute;
+	list-style: none;
+	display: block;
+	background: url(../images/navigation.png) no-repeat;
+	width: 914px;
+	height: 89px;
+	left: 50%;
+	margin-left: -457px;
+	top: 14px;
+	padding: 22px 32px 0 32px;
+}
+
+#header ul li {
+	float: left;
+}
+
+/* buttons */
+#header ul li > a, #header ul li.dropdown span {
+	display: block;
+	font-family: Arial, sans-serif;
+	text-shadow: 1px 1px 0 black;
+	line-height: 36px;
+	font-size: 13px;
+	text-transform: uppercase;
+	text-decoration: none;
+	font-weight: normal;
+	color: white;
+	height: 37px;
+	margin: 0 10px;
+	padding: 0 5px;
+}
+
+#header ul li.dropdown span { 
+	padding-right: 6px;
+}
+
+#header ul li:hover > a {
+	background: url(../images/topmenu-mid.png) repeat-x;
+}
+
+#header ul li.dropdown > div {
+	display: none;
+}
+
+#header ul li.dropdown:hover > span {
+	background: url(../images/topmenu-dropdown-mid.png) repeat-x;
+}
+
+/* button corners (normal button) */
+#header ul li:hover > a div {
+	display: block;
+	height: 37px;
+	width: 9px;
+}
+
+#header ul li:hover > a div.left {
+	background: url(../images/topmenu-left.png) no-repeat;
+	float: left;
+	margin-left: -14px;
+}
+
+#header ul li:hover > a div.right {
+	background: url(../images/topmenu-right.png) no-repeat;
+	float: right;
+	margin-right: -14px;
+}
+
+/* button corners (dropdown button) */
+#header ul li.dropdown:hover > span div {
+	display: block;
+	height: 37px;
+	width: 9px;
+}
+
+#header ul li.dropdown:hover > span div.left {
+	background: url(../images/topmenu-dropdown-left.png) no-repeat;
+	float: left;
+	margin-left: -13px;
+}
+
+#header ul li.dropdown:hover > span div.right {
+	background: url(../images/topmenu-dropdown-right.png) no-repeat;
+	float: right;
+	margin-right: -15px;
+}
+
+/* button dropdown pane */
+#header ul li.dropdown > div {
+	display: none;
+}
+
+#header ul li.dropdown:hover > div {
+	position: absolute;
+	display: block;
+	background: #020a17 url(../images/topmenu-dropdown-pane.png) left bottom repeat-x;
+	height: 205px;
+	width: 444px;
+	min-width: 170px;
+	margin-left: 3px;
+	margin-top: -2px;
+	
+	font-family: "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", sans-serif;
+	font-size: 12px;
+	color: white;
+}
+
+#header ul li.dropdown:hover > div div {
+	width: 38%;
+	float: left;
+	padding: 20px 25px;
+}
+
+#header ul li.dropdown:hover > div h3 {
+	font-size: 15px;
+	font-family: "Trebuchet MS", sans-serif;
+	font-weight: 300;
+	line-height: 20px;
+	margin-bottom: 14px;
+	color: white;
+}
+
+#header ul li.dropdown:hover > div a#account-erstellen {
+	display: block;
+	text-indent: -9999px;
+	background: url(../images/account-erstellen.png) no-repeat;
+	width: 177px;
+	height: 61px;
+}
+
+#header ul li.dropdown:hover > div a#account-erstellen:hover {
+	background-image: url(../images/account-erstellen-hover.png);
+}
+
+/* button dropdown pane form */
+#header ul li.dropdown:hover input[type="text"], #header ul li.dropdown:hover input[type="password"] {
+	width: 176px;
+	height: 27px;
+	border: 0;
+	background: url(../images/topmenu-dropdown-pane-input.png) no-repeat;
+	vertical-align: middle;
+	padding: 0 6px;
+	font-family: Arial, sans-serif;
+	font-size: 12px;
+	margin-bottom: 7px;
+	color: #0b0b0c;
+}
+
+#header ul li.dropdown:hover input[type="text"]:focus, #header ul li.dropdown:hover input[type="password"]:focus {
+	background-image: url(../images/topmenu-dropdown-pane-input-hover.png);
+	color: #cbd6e9;
+}
+
+#header ul li.dropdown:hover input[type="submit"] {
+	text-indent: -9999px;
+	border: 0;
+	background: url(../images/anmelden.png) no-repeat;
+	width: 107px;
+	height: 24px;
+	margin-top: 6px;
+	cursor: pointer;
+}
+
+#header ul li.dropdown:hover input[type="submit"]:focus, #header ul li.dropdown:hover input[type="submit"]:hover {
+	background-image: url(../images/anmelden-hover.png);
+}
+
+#header ul li.dropdown:hover label {
+	display: block;
+	color: #bac0c8;
+	font-weight: normal;
+	text-indent: 4px;
+	margin-bottom: 3px;
+	font-size: 11px;
+	text-transform: uppercase;
+}
+
+#wrapper {
+	margin-top: 290px;
+	background: url(../images/content-bg.png) center top no-repeat;
+	min-height: 494px;
+}

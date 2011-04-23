@@ -6,15 +6,14 @@
     </head>
 
 <body>
+    {header:header}
 
     <div id="wrapper">
-        <!-- Header -->
-        <div id="header">
-            {header:header}
-        </div>
-
         <div id="content-container">
-            <div id="content">{content:content}</div>
+            <div id="content">
+            	<h1><?php echo $title;?></h1>
+            	{content:content}
+            </div>
         </div>
         
         <div id="footer-container">
