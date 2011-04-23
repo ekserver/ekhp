@@ -9,7 +9,7 @@
 					<div>
 						<h3>Accountverwaltung</h3>
 						
-						<form action="" method="post">
+						<form action="login/validate" method="post">
 							<label>E-Mail / Accountname</label>
 							<input type="text" name="name_mail" value="" /><br />
 							

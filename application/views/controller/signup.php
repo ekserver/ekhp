@@ -8,12 +8,12 @@
                 <table cellpadding="2" cellspacing="5" border="0">
                     <tr>
                         <td><strong>Deine Emailadresse</strong></td>
-                        <td><?php echo form_input('email', 'Your Email', 'type="text" size="23" onfocus="if(this.value==\'Your Email\')this.value=\'\'"');?></td>
+                        <td><?php echo form_input('email', set_value('email'), 'type="text" size="23" onfocus="if(this.value==\'Your Email\')this.value=\'\'"');?></td>
                         <td><?php echo form_error('email'); ?></td>
                     </tr>
                     <tr>
                         <td><strong>Dein Benutzername</strong></td>
-                        <td><?php echo form_input('username', 'Your Username','type="text" size="23" onfocus="if(this.value==\'Your Username\')this.value=\'\'"');?></td>
+                        <td><?php echo form_input('username', set_value('username'),'type="text" size="23" onfocus="if(this.value==\'Your Username\')this.value=\'\'"');?></td>
                         <td><?php echo form_error('username'); ?></td>
                     </tr>
                     <tr>
@@ -47,12 +47,12 @@
                 <table cellpadding="2" cellspacing="5" border="0">
                     <tr>
                         <td><strong>Vorname</strong></td>
-                        <td><?php echo form_input('firstname', 'Your Firstname', 'type="text" size="23" onfocus="if(this.value==\'Your Firstname\')this.value=\'\'"');?></td>
+                        <td><?php echo form_input('firstname', set_value('firstname'), 'type="text" size="23" onfocus="if(this.value==\'Your Firstname\')this.value=\'\'"');?></td>
                         <td><?php echo form_error('firstname'); ?></td>
                     </tr>
                     <tr>
                         <td><strong>Nachname</strong></td>
-                        <td><?php echo form_input('lastname', 'Your Lastname', 'type="text" size="23" onfocus="if(this.value==\'Your Lastname\')this.value=\'\'"');?></td>
+                        <td><?php echo form_input('lastname', set_value('lastname'), 'type="text" size="23" onfocus="if(this.value==\'Your Lastname\')this.value=\'\'"');?></td>
                         <td><?php echo form_error('lastname'); ?></td>
                     </tr>
                     <tr>
