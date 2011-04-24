@@ -4,13 +4,16 @@
 $this->load->library('parser');
 
 $data = array(
-        //HEAD PARTIALS
+        // Head partials
         'head:head'         => $this->load->view('partials/head', NULL, TRUE),
-        //HEADER
+        // Header
         'header:header'     => $this->load->view('partials/header', NULL, TRUE),
-        //CONTENT
+        // Serverstatus
+        'serverstatus:serverstatus'	=> $this->load->view('partials/serverstatus', NULL, TRUE),
+        // Content
         'content:content'   => $this->load->view('controller/'. $content, NULL, TRUE),
-        //FOOTER
+        'content:teaserbox' => $this->load->view('partials/teaserbox', NULL, TRUE),
+        // Footer
         'footer:footer'     => $this->load->view('partials/footer', NULL, TRUE)
         );
         
