@@ -19,7 +19,7 @@
 })(jQuery);
 
 
-// maffis accordion :):)
+// accordion
 (function($) {
 	$.fn.accordion = function(first) 
 	{
@@ -51,7 +51,7 @@
 $(document).ready(function()
 {
 	// preload images
-	var images = ['topmenu-mid.png', 'topmenu-left.png', 'topmenu-right.png', 'topmenu-dropdown-mid.png', 'topmenu-dropdown-left.png', 'topmenu-dropdown-right.png', 'topmenu-dropdown-pane.png', 'account-erstellen-hover.png', 'topmenu-dropdown-pane-input-hover.png', 'anmelden-hover.png'];
+	var images = ['topmenu-mid.png', 'topmenu-left.png', 'topmenu-right.png', 'topmenu-dropdown-mid.png', 'topmenu-dropdown-left.png', 'topmenu-dropdown-right.png', 'topmenu-dropdown-pane.png', 'account-erstellen-hover.png', 'topmenu-dropdown-pane-input-hover.png', 'anmelden-hover.png', 'accordion-title-hover.png', 'button-bg-hover.png', 'teaserbox/navi-hover.png'];
 	
 	for(i=0; i < images.length; i++)
 	{
