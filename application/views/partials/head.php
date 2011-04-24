@@ -7,4 +7,4 @@
     <script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE8.js"></script>
     <![endif]-->
     <script src="<?=base_url()?>assets/scripts/jquery.js"></script>
-    <script src="<?=base_url()?>assets/scripts/ek-topmenu.js"></script>
+    <script src="<?=base_url()?>assets/scripts/ek.js"></script>

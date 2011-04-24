@@ -1,6 +1,6 @@
     <div id="header">
     	<ul>
-    		<li><a href="#">Home</a></li>
+    		<li><a href="<?=base_url()?>">Home</a></li>
     		<li><a href="#">Forum</a></li>
     		<li class="dropdown">
     			<span>Account</span>
@@ -22,7 +22,7 @@
 					<div>
 						<h3>Noch keinen Account?</h3>
 						Jetzt registrieren und sofort loslegen &ndash; 100% kostenlos!<br /><br /><br />
-						<a href="#" id="account-erstellen">Account erstellen</a>
+						<a href="<?=site_url('signup')?>" id="account-erstellen">Account erstellen</a>
 					</div>
 					<?else:?>
 					<div>
@@ -35,3 +35,4 @@
     		<li><a href="#">Armory</a></li>
     	</ul>
     </div>
+	
