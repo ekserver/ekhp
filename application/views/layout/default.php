@@ -19,7 +19,6 @@
             	<h1><?php echo $title;?></h1>
         	</div>
             <div id="content">
-            	{content:teaserbox}
             	{content:content}
             </div>
             <div id="foot"></div>

@@ -29,14 +29,13 @@
                     <tr>
                         <?php
                             $expansion_options = array(
-                                '0' => 'Classic',
-                                '1' => 'Burning Crusade',
-                                '2' => 'Wrath of the Lich King',
+                                EXPANSION_CLASSIC => 'Classic',
+                                EXPANSION_TBC => 'Burning Crusade',
+                                EXPANSION_WOTLK => 'Wrath of the Lich King',
                                 );
                         ?>
                         <td><strong>Erweiterung</strong></td>
                         <td><?php echo form_dropdown('expansion', $expansion_options, '2');?></td>
-                        <td><?php echo form_hidden('ip', $_SERVER['REMOTE_ADDR']);?></td>
                     </tr>
                 </table>
             </fieldset>
@@ -74,5 +73,5 @@
     </tr>
 </table>
 <br />
-<?php echo form_submit('submit', 'Erstellen'); echo form_reset('reset', 'Reset');?>
+<?php echo form_submit('submit', 'Erstellen'); ?>
 <?php echo form_close();?>

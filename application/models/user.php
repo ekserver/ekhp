@@ -13,77 +13,114 @@
 
 class User extends CI_Model
 {
-
     function __construct()
     {
         parent::__construct();
     }
+    
+    /**
+     * Erstellt einen Trinity kompatiblen Password-Hash
+     *
+     * @param string $tmp_username
+     * @param string $tmp_password
+     * @return string
+     */
+    function sha_pass($tmp_username, $tmp_password)
+    {
+        $username = trim(strtoupper($tmp_username));
+        $password = trim(strtoupper($tmp_password));
+    
+        return sha1(''.$username.':'.$password.'');
+    }
 
-    /*
-    | Registriert Nutzer in Authserver Database
-    | Benötigt wird dennoch ein extra Table für User genutzt von Codeigniter
-    | für Informationen wie Vorname, Spitzname, Alter, ect. pp.
-    | Dies ist nur die direkte Function "register", benötigt weitere helper zur Abwicklung
-    | -> User_helper
-    | 1:$data|array($username, $email, $sha_pass_hash, $expansion)
-    */
+    /**
+     * Registriert einen Nutzer in der Authserver Database
+     * Benötigt einen Array (key = column)
+     * Das Feld 'password' wird automatisch in einen kompatiblen
+     * Hash umgewandelt.
+     * 
+     * @param array $data
+     * @return bool
+     */
     function register($data)
     {
-        $query      = $this->db->insert('account', $data);
-        
-        if($query)
-            return true;
-        else
-            return false;
+    	// username & password is required
+    	if(!isset($data['username']) OR 
+    	   !isset($data['password']))
+    	{
+    		return FALSE;
+    	}
+    	
+    	if(!isset($data['expansion']))
+    	{
+    		$data['expansion'] = EXPANSION_WOTLK;
+    	}
+    	
+    	$data['last_ip'] = $_SERVER['REMOTE_ADDR'];
+    	$data['sha_pass_hash'] = $this->sha_pass($data['username'], $data['password']);
+    	unset($data['password']);
+    	    	
+        return $this->db->insert('account', $data);
     }
-    /*
-    | Loggt Benutzer mit den Logindaten der Authserver Database ein.
-    | Gespeichert werden soll dies als Session, sowie ein Cookie gesetzt werden,
-    | somit die Informationen public für die Homepage verfügbar sind.
-    | Desweiteren besteht die Möglichkeit die Nutzer auch mit der Email-Adresse einloggen zu lassen.
-    |
-    | -> User_helper -> sha_pass($password)
-    | 1:$name_mail, 2:$password
-    */
+    
+    /**
+     * Loggt Benutzer mit den Logindaten der Authserver Database ein.
+     * Gespeichert werden soll dies als Session, sowie ein Cookie gesetzt werden,
+     * somit die Informationen public für die Homepage verfügbar sind.
+     * Desweiteren besteht die Möglichkeit die Nutzer auch mit der Email-Adresse einloggen zu lassen.
+     *
+     * @param string $name_mail		Email oder Username
+     * @param string $password		Passwort (unhashed)
+     */
     function login($name_mail, $password)
     {
-        if(valid_email($name_mail)) // Input was email
-        {
-            $email              = $name_mail;
-
-            // Select * from account where email = $email
-            $this->db->select('username')->from('account')->where('email', $email);
-            $get_username = $this->db->get();
-            
-            // If username exist
-            if($get_username->num_rows() > 0)
-            {
-                $row        = $get_username->row();
-                
-                $username   = $row->username;
-                
-                // Get account data
-                if($user_data = get_account_data($username, $password))
-                {
-                    // Set session data
-                    $this->session->set_userdata($user_data);
-                    return true;
-                }
-            }
-        }
-        else // Input was username
-        {
-            $username = $name_mail;
-            
-            // Get account data
-            if($user_data = get_account_data($username, $password))
-            {
-                // Set session data
-                $this->session->set_userdata($user_data);
-                return true;
-            }
-        }
-        return false;
+    	// if user submitted an email, fetch matching username (required to create password hash)
+    	if(valid_email($name_mail))
+    	{
+    		$query = $CI->db->select('username')->from('account')->where('email', $name_email)->limit(1)->get();
+    		
+    		if($query->num_rows() > 0)
+    		{
+    			$username = $query->row()->username;
+    		}
+    		else
+    		{
+				return FALSE;
+			}
+    	}
+    	else
+    	{
+			$username = $name_mail;
+		}
+    	
+        // fetch user record with gmlevel (userlevel)
+	    $query = $this->db->select(array('account.id', 'account.username', 'account.email', 'account.joindate',
+			    				 	     'account.last_ip', 'account.locked', 'account.last_login', 'account.online',
+			    					     'account.recruiter', 'account_access.gmlevel AS userlevel'))
+			    	   ->from('account')
+			    	   ->where('account.username', $username)
+			    	   ->where('account.sha_pass_hash', $this->sha_pass($username, $password))
+			    	   ->join('account_access', 'account.id = account_access.id', 'left')
+			    	   ->limit(1)
+			    	   ->get();
+	   	
+	   	// matching record found?
+	   	if($query->num_rows() > 0)
+	   	{
+        	$userdata = $query->row_array();
+        	
+        	// if user is no gm, set userlevel to 0
+        	if(!isset($userdata['userlevel']))
+			{
+				$userdata['userlevel'] = 0;
+			}
+			
+			// save data to session
+			$this->session->set_userdata($userdata);
+			return TRUE;
+	   	}
+	   	
+        return FALSE;
     }
     
     /*
@@ -203,7 +240,7 @@ class User extends CI_Model
                 if($this->email->send())
                 {
                     $update_data = array(
-                        'sha_pass_hash' => sha_pass($username, $password)
+                        'sha_pass_hash' => $this->sha_pass($username, $password)
                     );
                     $this->db->where('username', $username);
                     $this->db->update('account', $update_data);

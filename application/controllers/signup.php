@@ -1,6 +1,6 @@
 <?php
 
-class Signup extends CI_Controller {
+class Signup extends Ext_Controller {
 
     function __construct()
     {
@@ -9,48 +9,68 @@ class Signup extends CI_Controller {
     
     function index()
     {
-        $this->template['title'] = 'EK | Accounterstellung';
-        $this->template['layout'] = 'default';
-        $this->template['content'] = 'signup';
-        $this->load->view('template', $this->template);
+        $this->set_title('Accounterstellung');
+        $this->display('signup/form');
+    }
+    
+    function success()
+    {
+    	$this->set_title('Accounterstellung');
+    	$this->display('signup/success');
     }
     
     function create()
     {
-        // Load form_validation library
+    	if($this->user->is_logged_in())
+    	{
+    		$this->show_error('Du bist bereits registriert.');
+    		return;
+    	}
+    	
         $this->load->library('form_validation');
         
         $this->form_validation->set_rules('email', 'Email-Adresse', 'trim|required|valid_email|callback__check_email');
         $this->form_validation->set_rules('username', 'Benutzername', 'trim|required|min_length[4]|max_length[12]|callback__check_username');
         $this->form_validation->set_rules('password', 'Passwort', 'trim|required|min_length[4]|max_length[32]');
         $this->form_validation->set_rules('password2', 'Passwort wiederholen', 'trim|required|matches[password]');
-        $this->form_validation->set_rules('expansion', 'Erweiterung', 'trim|required');
-        $this->form_validation->set_rules('ip', 'Ip-Adresse', 'trim|required|callback__check_ip');
-        
+        $this->form_validation->set_rules('expansion', 'Erweiterung', 'trim|required|callback__valid_expansion');
         $this->form_validation->set_rules('firstname', 'Vorname', 'trim|min_length[2]|max_length[12]');
         $this->form_validation->set_rules('lastname', 'Nachname', 'trim|min_length[3]|max_length[12]');
+        $this->form_validation->set_rules('', '', 'callback__check_ip');
         
         if($this->form_validation->run() == TRUE)
         {
-            $data               = array(
+            $data = array(
                 'username'      => $this->input->post('username'),
                 'email'         => $this->input->post('email'),
-                'sha_pass_hash' => sha_pass($this->input->post('username'), $this->input->post('password')),
+                'password'      => $this->input->post('password'),
                 'expansion'     => $this->input->post('expansion'),
                 'firstname'     => $this->input->post('firstname'),
                 'lastname'      => $this->input->post('lastname'),
-                'age'           => $this->input->post('age_d').'-'.$this->input->post('age_m').'-'.$this->input->post('age_y'),
-                'last_ip'       => $this->input->post('ip')
+                'age'           => $this->input->post('age_d').'-'.$this->input->post('age_m').'-'.$this->input->post('age_y')
             );
             
             if($this->user->register($data))
             {
+            	$this->user->login($data['username'], $data['password']);
                 redirect('signup/success');
             }
             
-            return false;
+            return FALSE;
         }
+        
         $this->index();
+    }
+    
+    function _valid_expansion($expansion)
+    {
+    	if($expansion <= EXPANSION_WOTLK)
+    	{
+    		return TRUE;
+    	}
+    	
+    	$this->form_validation->set_message('_valid_expansion', 'Ung&uuml;ltige Spielerweiterung.');
+    	return FALSE;
     }
     
     function _check_username($username)
@@ -60,12 +80,12 @@ class Signup extends CI_Controller {
         
         if($get_username->num_rows() > 0)
         {
-            $this->form_validation->set_message('check_username', 'Der Benutzername "%s" ist bereits vorhanden!');
-            return false;
+            $this->form_validation->set_message('_check_username', 'Der Benutzername "%s" wird bereits benutzt!');
+            return FALSE;
         }
         else
         {
-            return true;
+            return TRUE;
         }
     }
     
@@ -76,18 +96,24 @@ class Signup extends CI_Controller {
         
         if($get_email->num_rows() > 0)
         {
-            $this->form_validation->set_message('check_email', 'Die Email-Adresse "%s" ist bereits vorhanden!');
-            return false;
+            $this->form_validation->set_message('_check_email', 'Die Email-Adresse "%s" wird bereits benutzt!');
+            return FALSE;
         }
         else
         {
-            return true;
+            return TRUE;
         }
     }
     
+    /**
+     * Check if IP is banned
+     *
+     * @param $ip	Dummy
+     */
     function _check_ip($ip)
     {
-        // Load date helper
+        $ip = $_SERVER['REMOTE_ADDR'];
+        
         $this->load->helper('date');
         
         $this->db->select('*')->from('ip_banned')->where('ip', $ip);
@@ -115,9 +141,11 @@ class Signup extends CI_Controller {
             {
                 $this->form_validation->set_message('check_ip', 'Deine IP %s ist noch bis '.unix_to_human($unbandate, TRUE, "eu").' gebannt und kannst dich erst dann wieder einloggen! Doppelaccounts sind NICHT m&ouml;glich!'); 
             }
-            return false;
+            return FALSE;
         }
         else
-            return true;
+        {
+			return TRUE;
+		}
     }
 }    

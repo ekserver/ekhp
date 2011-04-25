@@ -1,5 +1,5 @@
 <?php echo validation_errors();?>
-<?php echo form_open('forget_password/forget');?>
+<?php echo form_open('forgotpw/forget');?>
 <table cellpadding="0" cellspacing="0" border="0">
     <tr>
         <td width="100%" valign="top">
@@ -22,5 +22,5 @@
     </tr>
 </table>
 <br />
-<?php echo form_submit('submit', 'Recover'); echo form_reset('reset', 'Reset');?>
+<?php echo form_submit('submit', 'Recover');?>
 <?php echo form_close();?>

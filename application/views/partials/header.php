@@ -1,7 +1,7 @@
     <div id="header">
     	<ul>
     		<li><a href="<?=base_url()?>">Home</a></li>
-    		<li><a href="#">Forum</a></li>
+    		<li><a href="http://forum.eternal-knights.net">Forum</a></li>
     		<li class="dropdown">
     			<span>Account</span>
     			<div>
@@ -9,7 +9,7 @@
 					<div>
 						<h3>Accountverwaltung</h3>
 						
-						<form action="login/validate" method="post">
+						<form action="<?=site_url('login/validate')?>" method="post">
 							<label>E-Mail / Accountname</label>
 							<input type="text" name="name_mail" value="" /><br />
 							
@@ -26,13 +26,14 @@
 					</div>
 					<?else:?>
 					<div>
-						Hallo <?php echo $this->session->userdata('username')?>! | <a href="login/logout">Logout</a>
+						Hallo <?php echo $this->session->userdata('username')?>! | <a href="<?=site_url('login/logout')?>">Logout</a><br />
+						<a href="<?=site_url('controlpanel')?>">Accountverwaltung</a>
 					</div>
 					<?endif?>
     			</div>
     		</li>
-    		<li><a href="#">Server</a></li>
-    		<li><a href="#">Armory</a></li>
+    		<li><a href="<?=site_url('server')?>">Server</a></li>
+    		<li><a href="<?=site_url('armory')?>">Armory</a></li>
     	</ul>
     </div>
 	

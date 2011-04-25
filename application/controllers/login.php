@@ -1,17 +1,10 @@
 <?php
 
-class Login extends CI_Controller {
+class Login extends Ext_Controller {
 
     function __construct()
     {
         parent::__construct();
-    }
-    
-    function index()
-    {
-        $this->template['layout'] = 'default';
-        $this->template['userid'] = $this->session->userdata('id');
-        $this->load->view('template', $this->template);
     }
 
     function validate()
@@ -22,9 +15,8 @@ class Login extends CI_Controller {
         }
         else
         {
-            $this->template['title'] = 'Login failed';
-            $this->template['content'] = 'login/failed';
-            $this->index();
+            $this->set_title('Login fehlgeschlagen');
+            $this->display('login/failed');
         }
 	}
 
@@ -36,8 +28,7 @@ class Login extends CI_Controller {
 
     function loggedout()
     {
-        $this->template['title'] = 'Ausgeloggt!';
-        $this->template['content'] = 'login/loggedout';
-		$this->index();
+        $this->set_title('Ausgeloggt!');
+		$this->display('login/loggedout');
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-class Forget_password extends CI_Controller {
+class Forgotpw extends Ext_Controller {
 
     function __construct()
     {
@@ -9,15 +9,12 @@ class Forget_password extends CI_Controller {
     
     function index()
     {
-        $this->template['title'] = 'EK | Passwort vergessen';
-        $this->template['layout'] = 'default';
-        $this->template['content'] = 'forget_password';
-        $this->load->view('template', $this->template);
+        $this->set_title('Passwort vergessen');
+        $this->display('forgotpw');
     }
 
 	function forget()
     {
-        // Load form_validation library
         $this->load->library('form_validation');
         
         $this->form_validation->set_rules('username', 'Benutzername', 'trim|required|min_length[4]|max_length[12]|callback__check_username');
@@ -33,7 +30,7 @@ class Forget_password extends CI_Controller {
                 redirect('login/new_password_send');
             }
             
-            return false;
+            return FALSE;
         }
         $this->index();
     }
@@ -44,11 +41,11 @@ class Forget_password extends CI_Controller {
         $get_username = $this->db->get();
         
         if($get_username->num_rows() > 0)
-            return true;
+            return TRUE;
         else
         {
             $this->form_validation->set_message('check_username', 'Der Benutzername "%s" ist nicht vorhanden!');
-            return false;
+            return FALSE;
         }
     }
 }

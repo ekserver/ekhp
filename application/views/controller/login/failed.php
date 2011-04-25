@@ -1,2 +1,2 @@
-Login seems to be incorrect.<br />
-<?=anchor('forgotpw', 'Did you forget your password?')?>
+Login fehlgeschlagen.<br />
+<?=anchor('forgotpw', 'Hast du dein Passwort vergessen?')?>

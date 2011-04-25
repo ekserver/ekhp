@@ -1,6 +1,8 @@
 <?php
 
-class Controlpanel extends User_Controller {
+class Controlpanel extends Ext_Controller 
+{
+	protected $access = USERLEVEL_USER;
 
     function __construct()
     {
@@ -9,15 +11,12 @@ class Controlpanel extends User_Controller {
     
     function index()
     {
-        $this->template['title'] = 'Account-Verwaltung';
-        $this->template['layout'] = 'default';
-        $this->load->view('template', $this->template);
+    	redirect('controlpanel/dashboard');
     }
     
     function dashboard()
     {
-        $this->template['content'] = 'controlpanel/dashboard';
-        $this->index();
+        $this->set_title('Accountverwaltung');
+        $this->display('controlpanel/dashboard');
     }
-
 }
