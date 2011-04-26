@@ -375,6 +375,26 @@ img {
 	font-weight: bold;
 }
 
+#news div.replies {
+	height: 26px;
+	width: 244px;
+	background: url(../images/news_replies.png) left top;
+	margin-top: 15px;
+	margin-bottom: -15px;
+	margin-left: -9px;
+	text-indent: 32px;
+}
+
+#news div.replies a {
+	color: #75bae6;
+	line-height: 26px;
+	text-decoration: none;
+}
+
+#news div.replies a:hover {
+	color: #c1e7ff;
+}
+
 /* sidebar */
 #sidebar {
 	float: right;

@@ -54,7 +54,10 @@
 	<?foreach($news as $entry):?>
 		<h2><b></b><small><?=date('d.m.y', $entry->date)?></small><?=$entry->headline?></h2>
 		<div>
-			<?=$entry->text?>
+			<?=$entry->text?><br />
+			<div class="replies">
+				<a href="<?=$this->config->item('url', 'phpbb')?>viewtopic.php&f=<?=$entry->forum_id?>&t=<?=$entry->topic_id?>"><?=$entry->replies?> Reaktionen</a>
+			</div>
 		</div>
 	<?endforeach?>
 </div>
