@@ -8,6 +8,7 @@ body {
 	background: #000911 url(../images/content-bg.png) center 290px no-repeat;
 	color: white;
 	font-family: Arial, sans-serif;
+	line-height: 16px;
 }
 
 img {
@@ -305,6 +306,8 @@ img {
 /* accordion */
 .accordion-box { 
 	width: 520px;
+	margin: 14px 0;
+	line-height: 16px;
 }
 
 .accordion-box h2 {
@@ -327,7 +330,7 @@ img {
 	padding-bottom: 0px;
 }
 
-.accordion-box div {
+.accordion-box > div {
 	clear: both;
 	width: 486px;
 	padding: 15px 17px 25px 17px;
@@ -370,25 +373,6 @@ img {
 	font-family: Arial, sans-serif;
 	font-size: 10px;
 	font-weight: bold;
-}
-
-/* button-link */
-a.button {
-	display: inline-block;
-	background: #0c1016 url(../images/button-bg.png) top left repeat-x;
-	line-height: 12px;
-	padding: 7px 10px;
-	border: 1px solid #0c1318;
-	color: #6f8fa3;
-	-moz-border-radius: 4px;
-	-webkit-border-radius: 4px;
-	border-radius: 4px;
-	text-decoration: none;
-}
-
-a.button:hover {
-	background: none #141b23;
-	text-shadow: 1px 1px 0 #0c1318;
 }
 
 /* sidebar */
@@ -435,4 +419,63 @@ a.button:hover {
 	font-size: 11px;
 	color: #334b5f;
 	text-align: center;
+}
+
+/* text styles */
+ul {
+	margin-left: 15px;
+}
+
+ol {
+	margin-left: 18px;
+}
+
+a {
+	text-decoration: underline;
+	color: #4ea1cb;
+}
+
+a:hover {
+	text-decoration: none;
+}
+
+a.button {
+	display: inline-block;
+	background: #0c1016 url(../images/button-bg.png) top left repeat-x;
+	line-height: 12px;
+	padding: 7px 10px;
+	border: 1px solid #0c1318;
+	color: #6f8fa3;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	border-radius: 4px;
+	text-decoration: none;
+}
+
+a.button:hover {
+	background: none #141b23;
+	text-shadow: 1px 1px 0 #0c1318;
+	color: #93B4C9;
+}
+
+.bbcode.quote, .bbcode.code {
+	display: block;
+	padding: 6px;
+	margin: 5px 0;
+	background: #080C11;
+	border: 1px solid #111b25;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	border-radius: 4px;
+}
+
+.bbcode.code {
+	font-family: "Courier New", serif;
+}
+
+.bbcode small {
+	display: block;
+	font-size: 10px;
+	margin-bottom: 5px;
+	font-family: Arial, sans-serif;
 }
