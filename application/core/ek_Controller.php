@@ -41,7 +41,7 @@ class Ext_Controller extends CI_Controller
 	 * @param int $level			User/GM-Level value (USERLEVEL_* constant)
 	 * @param string $redirection	Redirection target, if user has no access
 	 */
-	public function protect($level, $message = 'Du hast kein Recht, diese Seite einzusehen.', $headline = 'Fehler')
+	protected function protect($level, $message = 'Du hast kein Recht, diese Seite einzusehen.', $headline = 'Fehler')
 	{
 		if(!$this->user->is_logged_in() OR $this->session->userdata('userlevel') < $level)
 		{
@@ -55,7 +55,7 @@ class Ext_Controller extends CI_Controller
 	 * @param string $name	Name of file located in views/layout/
 	 * @return bool
 	 */
-	public function set_layout($name)
+	protected function set_layout($name)
 	{
 		if(substr($name, -4) == '.php')
 		{
@@ -76,7 +76,7 @@ class Ext_Controller extends CI_Controller
 	 *
 	 * @param string $title
 	 */
-	public function set_title($title)
+	protected function set_title($title)
 	{
 		$this->title = $title;
 	}
@@ -87,7 +87,7 @@ class Ext_Controller extends CI_Controller
 	 * @param string $content_partial	Name of file located in views/partials/controller/
 	 * @param bool	 $return			Return output
 	 */
-	public function display($content_partial, $return = FALSE)
+	protected function display($content_partial, $return = FALSE)
 	{
 		// use name of class as title, if title not specified
 		if(empty($this->title))
@@ -100,7 +100,6 @@ class Ext_Controller extends CI_Controller
 		}
 		
 		$this->load->library('parser');
-		
 		$this->data['head:head'] = $this->load->view('partials/head', $this->data, TRUE);
 		$this->data['header:header'] = $this->load->view('partials/header', $this->data, TRUE);
 		$this->data['serverstatus:serverstatus'] = $this->load->view('partials/serverstatus', $this->data, TRUE);
@@ -116,13 +115,13 @@ class Ext_Controller extends CI_Controller
 	 * @param string $message	The error message to show
 	 * @param string $headline	Optional; Headline / Title
 	 */
-	public function show_error($message, $headline = 'Fehler')
+	protected function show_error($message, $headline = 'Fehler')
 	{
 		$this->set_title($headline);
 		$this->data['message'] = $message;
 		$this->data['headline'] = $headline;
 		
-		$this->output->set_output($this->display('error'));
+		$this->output->set_output($this->display('error', TRUE));
 		$this->output->_display();
 		exit;
 	}

@@ -56,7 +56,7 @@
 		<div>
 			<?=$entry->text?><br />
 			<div class="replies">
-				<a href="<?=$this->config->item('url', 'phpbb')?>viewtopic.php&f=<?=$entry->forum_id?>&t=<?=$entry->topic_id?>"><?=$entry->replies?> Reaktionen</a>
+				<a href="<?=$this->config->item('url', 'phpbb')?>viewtopic.php?f=<?=$entry->forum_id?>&t=<?=$entry->topic_id?>"><?=$entry->replies?> Reaktionen</a>
 			</div>
 		</div>
 	<?endforeach?>

@@ -16,7 +16,7 @@
     
         <div id="content-container">
         	<div id="title">
-            	<h1><?php echo $title;?></h1>
+            	<h1>{title}</h1>
         	</div>
             <div id="content">
             	{content:content}
@@ -26,9 +26,9 @@
         
         <div id="sidebar">
         	<div class="box">
-        		<h3>Eine Box</h3>
+        		<h3>Forumaktivit&auml;t</h3>
         		<div class="content">
-        			mit Inhalt
+        			{module:forum_activity}
         		</div>
         	</div>
         	<div class="box">

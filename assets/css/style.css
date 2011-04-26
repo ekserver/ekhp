@@ -425,6 +425,43 @@ img {
 	font-size: 12px;
 }
 
+#sidebar .box table {
+	border-collapse: collapse;
+	padding: 0;
+	border: 1px solid #172b3d;
+}
+
+#sidebar .box table td {
+	background: #0a121d;
+	margin: 1px;
+	padding: 5px;
+}
+
+#sidebar .box table td.alt {
+	background: #080e17;
+}
+
+#sidebar .box table tr {
+	margin: 0; padding: 0;
+}
+
+#sidebar .box a {
+	text-decoration: none;
+}
+
+#sidebar .box a:hover {
+	color: white;
+}
+
+#sidebar .box a.white {
+	color: white;
+	font-weight: bold;
+}
+
+#sidebar .box a.white:hover {
+	text-decoration: underline;
+}
+
 /* footer */
 #footer-container {
 	clear: both;
