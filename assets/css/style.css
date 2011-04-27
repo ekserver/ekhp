@@ -35,6 +35,16 @@ img {
 	padding: 22px 32px 0 32px;
 }
 
+#header a.logo-link {
+	position: absolute;
+	top: 110px;
+	width: 550px;
+	height: 110px;
+	left: 50%;
+	margin-left: -290px;
+	text-indent: -9999px;
+}
+
 /* buttons */
 #header ul li > a, #header ul li.dropdown span {
 	display: block;
@@ -442,10 +452,6 @@ img {
 	background: #080e17;
 }
 
-#sidebar .box table tr {
-	margin: 0; padding: 0;
-}
-
 #sidebar .box table th {
 	font-weight: bold;
 	text-align: left;
@@ -468,7 +474,7 @@ img {
 	background-color: #12212f;
 }
 
-#sidebar .box table.collapsable.collapsed td {
+#sidebar .box table.collapsable.collapsed tr + tr {
 	display: none;
 }
 

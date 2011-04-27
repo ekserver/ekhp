@@ -16,6 +16,7 @@ class Phpbb
 		$text = preg_replace_callback('#\[list](.*)\[/list\]#msUi', array($this, 'handle_bbcode_list_u'), $text);
 		$text = preg_replace_callback('#\[list=1](.*)\[/list\]#msUi', array($this, 'handle_bbcode_list_1'), $text);
 		$text = preg_replace_callback('#\[list=a](.*)\[/list\]#msUi', array($this, 'handle_bbcode_list_a'), $text);
+		$text = preg_replace('#<img src="\{SMILIES_PATH\}([^"]+)"#', '<img class="bbcode smiley" src="'.config_item('url', 'phpbb').'images/smilies/$1"', $text);
 		
 		$text = str_replace("\n", '<br />', $text);
 		

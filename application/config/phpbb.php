@@ -9,7 +9,7 @@
 */
 
 // url to forum, with trailing slash
-$config['url'] = 'http://forum.eternal-knights.net/';
+$config['url'] = 'http://www.eternal-knights.net/forum/';
 
 // database connection group for phpBB, defined in database.php
 $config['db_group'] = 'phpbb';

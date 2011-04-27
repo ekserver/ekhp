@@ -35,5 +35,7 @@
     		<li><a href="<?=site_url('server')?>">Server</a></li>
     		<li><a href="<?=site_url('armory')?>">Armory</a></li>
     	</ul>
+    	
+    	<a href="<?=base_url()?>" class="logo-link">Startseite</a>
     </div>
 	
