@@ -1,6 +1,6 @@
 <?php
 
-class Serverinfo extends EK_Module
+class Serverinfo_Module extends EK_Module
 {
 	function __construct()
 	{

@@ -1,6 +1,6 @@
 <?php
 
-class Events extends EK_Module
+class Events_Module extends EK_Module
 {
 	function __construct()
 	{
@@ -28,7 +28,7 @@ class Events extends EK_Module
 		
 		foreach($events as $event)
 		{
-			$content[date('j', $event->date)] = '<div style="display:none" id="event-title-'.date('j', $event->date).'">'.$event->title.'</div><a href="'.site_url('events/'.$event->id).'">'.date('j', $event->date).'</a>';
+			$content[date('j', $event->date)] = '<div style="display:none" id="event-title-'.date('j', $event->date).'">'.$event->title.'</div><a href="'.site_url('event/'.$event->id.'-'.url_title($event->title)).'">'.date('j', $event->date).'</a>';
 		}
 		
 		$config = array();

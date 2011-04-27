@@ -1,5 +1,4 @@
-<?=$calendar?><br />
-<div style="text-align:right"><a href="<?=site_url('events')?>" class="button">Mehr</a></div>
+<?=$calendar?>
 
 <script type="text/javascript">
 	$(document).ready(function()

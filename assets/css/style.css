@@ -5,7 +5,7 @@
 }
 
 body {
-	background: #000911 url(../images/content-bg.png) center 290px no-repeat;
+	background: #000912 url(../images/content-bg.png) center 290px no-repeat;
 	color: white;
 	font-family: Arial, sans-serif;
 	line-height: 16px;
@@ -122,6 +122,7 @@ img {
 	font-family: "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", sans-serif;
 	font-size: 12px;
 	color: white;
+	z-index: 15;
 }
 
 #header ul li.dropdown > div div {
@@ -570,7 +571,7 @@ a.button {
 a.button:hover {
 	background: none #141b23;
 	text-shadow: 1px 1px 0 #0c1318;
-	color: #93B4C9;
+	color: white;
 }
 
 *::-moz-selection {

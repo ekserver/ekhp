@@ -38,7 +38,7 @@ class EK_Parser extends CI_Parser
 		{
 			include_once APPPATH.'modules/'.$name.'.php';
 			
-			$classname = ucfirst($name);
+			$classname = ucfirst($name).'_Module';
 			$module = new $classname;
 			
 			ob_start();

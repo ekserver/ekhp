@@ -24,4 +24,15 @@ class Calendar extends CI_Model
 				 ->get()
 				 ->result();
 	}
+	
+	/**
+	 * Return single detailed event by ID
+	 *
+	 * @param int $id	Event-ID
+	 * @return object
+	 */
+	public function get_event_by_id($event_id)
+	{
+		return $this->db->from('ek_calendar')->select('*')->where('id', $event_id)->get()->row();
+	}
 }

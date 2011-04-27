@@ -1,6 +1,6 @@
 <?php
 
-class Forum_activity extends EK_Module
+class Forum_activity_Module extends EK_Module
 {
 	function __construct()
 	{

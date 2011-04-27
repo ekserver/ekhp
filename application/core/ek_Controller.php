@@ -90,23 +90,26 @@ class Ext_Controller extends CI_Controller
 	protected function display($content_partial, $return = FALSE)
 	{
 		// use name of class as title, if title not specified
+		$partials = array();
+		
 		if(empty($this->title))
 		{
-			$this->data['title'] = get_class($this);
+			$partials['title'] = get_class($this);
 		}
 		else
 		{
-			$this->data['title'] = $this->title;
+			$partials['title'] = $this->title;
 		}
 		
 		$this->load->library('parser');
-		$this->data['head:head'] = $this->load->view('partials/head', $this->data, TRUE);
-		$this->data['header:header'] = $this->load->view('partials/header', $this->data, TRUE);
-		$this->data['serverstatus:serverstatus'] = $this->load->view('partials/serverstatus', $this->data, TRUE);
-		$this->data['content:content'] = $this->load->view('controller/'. $content_partial, $this->data, TRUE);
-		$this->data['footer:footer'] = $this->load->view('partials/footer', $this->data, TRUE);
 		
-		return $this->parser->parse('layout/'.$this->layout, $this->data, $return);
+		$partials['head:head'] = $this->load->view('partials/head', array_merge(array('title' => $partials['title']), $this->data), TRUE);
+		$partials['header:header'] = $this->load->view('partials/header', $this->data, TRUE);
+		$partials['serverstatus:serverstatus'] = $this->load->view('partials/serverstatus', $this->data, TRUE);
+		$partials['content:content'] = $this->load->view('controller/'. $content_partial, $this->data, TRUE);
+		$partials['footer:footer'] = $this->load->view('partials/footer', $this->data, TRUE);
+		
+		return $this->parser->parse('layout/'.$this->layout, $partials, $return);
 	}
 	
 	/**
