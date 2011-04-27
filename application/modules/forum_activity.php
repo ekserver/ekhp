@@ -2,6 +2,11 @@
 
 class Forum_activity extends EK_Module
 {
+	function __construct()
+	{
+		parent::__construct();
+	}
+	
 	public function index()
 	{
 		$this->load->model('forum_post');

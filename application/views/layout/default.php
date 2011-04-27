@@ -26,21 +26,21 @@
         
         <div id="sidebar">
         	<div class="box">
+        		<h3>Serverinformationen</h3>
+        		<div class="content">
+        			{module:serverinfo}
+        		</div>
+        	</div>
+        	<div class="box">
+        		<h3>Events</h3>
+        		<div class="content">
+        			{module:events}
+        		</div>
+        	</div>
+        	<div class="box">
         		<h3>Forumaktivit&auml;t</h3>
         		<div class="content">
         			{module:forum_activity}
-        		</div>
-        	</div>
-        	<div class="box">
-        		<h3>Eine Box</h3>
-        		<div class="content">
-        			mit Inhalt
-        		</div>
-        	</div>
-        	<div class="box">
-        		<h3>Eine Box</h3>
-        		<div class="content">
-        			mit Inhalt
         		</div>
         	</div>
         </div>
