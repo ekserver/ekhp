@@ -9,6 +9,7 @@ class Welcome extends Ext_Controller
      
 	function index()
 	{
+		$this->load->config('phpbb');
 		$this->load->model('news');
 		
 		$this->data['news'] = $this->news->get_news(0, 8);

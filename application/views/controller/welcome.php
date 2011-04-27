@@ -64,7 +64,7 @@
 <div style="clear: both"></div>
 
 <br />
-<div style="text-align: right"><a href="#" class="button">Newsarchiv</a></div>
+<div style="text-align: right"><a href="<?=config_item('url', 'phpbb')?>viewforum.php?f=<?=config_item('news_forum_id', 'phpbb')?>" class="button">Newsarchiv</a></div>
 
 <script type="text/javascript">
 /* <![CDATA[ */

@@ -1,7 +1,7 @@
     <div id="header">
     	<ul>
     		<li><a href="<?=base_url()?>">Home</a></li>
-    		<li><a href="http://forum.eternal-knights.net">Forum</a></li>
+    		<li><a href="<?=config_item('url', 'phpbb')?>">Forum</a></li>
     		<li class="dropdown">
     			<span>Account</span>
     			<div>

@@ -18,7 +18,6 @@
 	};
 })(jQuery);
 
-
 // accordion
 (function($) {
 	$.fn.accordion = function(first) 
@@ -46,6 +45,74 @@
 		}
 	};
 })(jQuery);
+
+// collapsable tables
+(function($) {
+	$.fn.collapsable = function()
+	{
+		var root = $(this);
+		var row = root.find('tr:first-child').next();
+		
+		root.find('tr:first-child th').click(function()
+		{
+			if(row.css('display') == 'none' || root.hasClass('collapsed'))
+			{
+				root.removeClass('collapsed');
+				row.show();
+			}
+			else
+			{
+				row.hide();
+				root.addClass('collapsed');
+			}
+		});
+	};
+})(jQuery);
+
+// tooltip
+(function($) {
+	$.fn.tooltip = function(text)
+	{
+		var tooltip = $('<div class="tooltip">' + text + '</div>');
+		var pos = $(this).position();
+		
+		tooltip.css('top', pos.top + $(this).height());
+		tooltip.css('left', pos.left + $(this).width());
+		
+		$('body').prepend(tooltip);
+		
+		$(this).hover(function()
+		{
+			tooltip.fadeIn();
+		},
+		function()
+		{
+			tooltip.hide();
+		});
+	};
+})(jQuery);
+
+// select text on any element (ty: http://wanderwort.de/2009/11/19/select-any-html-text-in-element-with-jquery/)
+jQuery.fn.extend({
+  selectText: function() {
+    var text = $(this)[0];
+    if ($.browser.msie) {
+      var range = document.body.createTextRange();
+      range.moveToElementText(text);
+      range.select();
+    } else if ($.browser.mozilla || $.browser.opera) {
+      var selection = window.getSelection();
+      var range = document.createRange();
+      range.selectNodeContents(text);
+      selection.removeAllRanges();
+      selection.addRange(range);
+    } else if ($.browser.safari) {
+      var selection = window.getSelection();
+      selection.setBaseAndExtent(text, 0, text, 1);
+    }
+    return $(this);
+  }
+});
 
 // various init routines required on all pages
 $(document).ready(function()
