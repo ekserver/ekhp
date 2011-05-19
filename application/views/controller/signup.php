@@ -4,25 +4,25 @@
     <tr>
         <td width="50%" valign="top">
             <fieldset>
-                <legend>User Information (required)</legend>
+                <legend><?=lang('signup_form_legend_user_info');?></legend>
                 <table cellpadding="2" cellspacing="5" border="0">
                     <tr>
-                        <td><strong>Deine Emailadresse</strong></td>
-                        <td><?php echo form_input('email', set_value('email'), 'type="text" size="23" onfocus="if(this.value==\'Your Email\')this.value=\'\'"');?></td>
+                        <td><strong><?=lang('signup_form_email');?></strong></td>
+                        <td><?php echo form_input('email', set_value('email'), 'type="text" size="23"');?></td>
                         <td><?php echo form_error('email'); ?></td>
                     </tr>
                     <tr>
-                        <td><strong>Dein Benutzername</strong></td>
-                        <td><?php echo form_input('username', set_value('username'),'type="text" size="23" onfocus="if(this.value==\'Your Username\')this.value=\'\'"');?></td>
-                        <td><?php echo form_error('username'); ?></td>
+                        <td><strong><?=lang('signup_form_username');?></strong></td>
+                        <td><?php echo form_input('username', set_value('username'), 'type="text" size="23"');?></td>
+                        <td><?php echo form_error('username');?></td>
                     </tr>
                     <tr>
-                        <td><strong>Passwort</strong></td>
+                        <td><strong><?=lang('signup_form_pass');?></strong></td>
                         <td><?php echo form_password('password');?></td>
                         <td><?php echo form_error('password'); ?></td>
                     </tr>
                     <tr>
-                        <td><strong>Passwort wiederholen</strong></td>
+                        <td><strong><?=lang('signup_form_pass_repeat');?></strong></td>
                         <td><?php echo form_password('password2');?></td>
                         <td><?php echo form_error('password2'); ?></td>
                     </tr>
@@ -34,7 +34,7 @@
                                 '2' => 'Wrath of the Lich King',
                                 );
                         ?>
-                        <td><strong>Erweiterung</strong></td>
+                        <td><strong><?=lang('signup_form_expansion');?></strong></td>
                         <td><?php echo form_dropdown('expansion', $expansion_options, '2');?></td>
                         <td><?php echo form_hidden('ip', $_SERVER['REMOTE_ADDR']);?></td>
                     </tr>
@@ -43,20 +43,20 @@
         </td>
         <td width="50%" valign="top">
             <fieldset>
-                <legend>Additional Info (optional)</legend>
+                <legend><?=lang('signup_form_legend_additional_info');?></legend>
                 <table cellpadding="2" cellspacing="5" border="0">
                     <tr>
-                        <td><strong>Vorname</strong></td>
-                        <td><?php echo form_input('firstname', set_value('firstname'), 'type="text" size="23" onfocus="if(this.value==\'Your Firstname\')this.value=\'\'"');?></td>
+                        <td><strong><?=lang('signup_form_firstname');?></strong></td>
+                        <td><?php echo form_input('firstname', set_value('firstname'), 'type="text" size="23"');?></td>
                         <td><?php echo form_error('firstname'); ?></td>
                     </tr>
                     <tr>
-                        <td><strong>Nachname</strong></td>
-                        <td><?php echo form_input('lastname', set_value('lastname'), 'type="text" size="23" onfocus="if(this.value==\'Your Lastname\')this.value=\'\'"');?></td>
+                        <td><strong><?=lang('signup_form_lastname');?></strong></td>
+                        <td><?php echo form_input('lastname', set_value('lastname'), 'type="text" size="23"');?></td>
                         <td><?php echo form_error('lastname'); ?></td>
                     </tr>
                     <tr>
-                        <td><strong>Geburtstag</strong></td>
+                        <td><strong><?=lang('signup_form_birth');?></strong></td>
                         <?php
                             $this->load->helper('date');
                             $year = "%Y";
@@ -74,5 +74,5 @@
     </tr>
 </table>
 <br />
-<?php echo form_submit('submit', 'Erstellen'); echo form_reset('reset', 'Reset');?>
+<?php echo form_submit('submit', $this->lang->line('signup_form_submit')); echo form_reset('reset', $this->lang->line('signup_form_reset'));?>
 <?php echo form_close();?>

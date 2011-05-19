@@ -21,7 +21,7 @@ Eines Tages aber beschloß eine kleine Zeile Blindtext, ihr Name war Lorem Ipsum
 <div style="clear: both"></div>
 
 <br />
-<div style="text-align: right"><a href="#" class="button">&Auml;ltere Eintr&auml;ge</a></div>
+<div style="text-align: right"><a href="#" class="button"><?=lang('welcome_news_show_all');?></a></div>
 
 <script type="text/javascript">
 /* <![CDATA[ */

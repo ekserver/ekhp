@@ -22,7 +22,7 @@ class Login extends CI_Controller {
         }
         else
         {
-            $this->template['title'] = 'Login failed';
+            $this->template['title'] = $this->lang->line('login_title_failed');
             $this->template['content'] = 'login/failed';
             $this->index();
         }
@@ -36,7 +36,7 @@ class Login extends CI_Controller {
 
     function loggedout()
     {
-        $this->template['title'] = 'Ausgeloggt!';
+        $this->template['title'] = $this->lang->line('login_title_loggedout');
         $this->template['content'] = 'login/loggedout';
 		$this->index();
     }

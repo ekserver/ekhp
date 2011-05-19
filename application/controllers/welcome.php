@@ -25,7 +25,7 @@ class Welcome extends CI_Controller {
      
 	function index()
 	{
-        $this->template['title'] = 'Willkommen auf EK!';
+        $this->template['title'] = $this->lang->line('welcome_title');
         $this->template['content'] = 'welcome';
         $this->template['layout'] = 'default';
 		$this->load->view('template', $this->template);
