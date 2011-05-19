@@ -16,10 +16,9 @@
     
         <div id="content-container">
         	<div id="title">
-            	<h1><?php echo $title;?></h1>
+            	<h1>{title}</h1>
         	</div>
             <div id="content">
-            	{content:teaserbox}
             	{content:content}
             </div>
             <div id="foot"></div>
@@ -27,21 +26,21 @@
         
         <div id="sidebar">
         	<div class="box">
-        		<h3>Eine Box</h3>
+        		<h3>Serverinformationen</h3>
         		<div class="content">
-        			mit Inhalt
+        			{module:serverinfo}
         		</div>
         	</div>
         	<div class="box">
-        		<h3>Eine Box</h3>
+        		<h3>Events</h3>
         		<div class="content">
-        			mit Inhalt
+        			{module:events}
         		</div>
         	</div>
         	<div class="box">
-        		<h3>Eine Box</h3>
+        		<h3>Forumaktivit&auml;t</h3>
         		<div class="content">
-        			mit Inhalt
+        			{module:forum_activity}
         		</div>
         	</div>
         </div>

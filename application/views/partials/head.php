@@ -1,5 +1,5 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title><?php echo $title;?></title>
+    <title><?=$title?> | Eternal-Knights</title>
     
     <link rel="stylesheet" href="<?=base_url()?>assets/css/style.css" type="text/css" />
     <!--[if IE]>
